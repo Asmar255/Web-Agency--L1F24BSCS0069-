@@ -242,6 +242,94 @@
             font-weight: 400;
             margin-top: 5px;
         }
+
+        /* Visionary Section Styles */
+        .vision-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            color: #111827;
+        }
+
+        .vision-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .vision-content {
+            flex: 1;
+            max-width: 540px;
+        }
+
+        .vision-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #111827;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .vision-description {
+            font-size: 16px;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background-color: transparent;
+            color: #111827;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-outline:hover {
+            border-color: #111827;
+            background-color: #f3f4f6;
+        }
+
+        .vision-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .vision-image-box {
+            width: 100%;
+            max-width: 560px;
+            height: 420px;
+            background: #e5e7eb;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .vision-placeholder-text {
+            color: #6b7280;
+            font-weight: 500;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .vision-placeholder-text span {
+            display: block;
+            font-size: 13px;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -285,6 +373,25 @@
                     <div class="hero-placeholder-text">
                         Web Agency Showcase Visual
                         <span><img src="./Assets/web agency hero section.jpg" width="500px" alt="web tech photo" height="350px"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visionary Content Section -->
+    <section class="vision-section">
+        <div class="container vision-container">
+            <div class="vision-content">
+                <h2 class="vision-title">Unforgettable, Websites, Brands & Visuals for Bold Visionaries.[cite: 1]</h2>
+                <p class="vision-description">Were not your typical design agency. Founded in 2014, we’re a collective of designers, developers, and strategists who believe great digital experiences should be beautiful, functional, and human-centered. From startups to global brands, we help ambitious businesses stand out.[cite: 1]</p>
+                <a href="about.html" class="btn-outline">Know More About Us</a>
+            </div>
+            <div class="vision-image-wrapper">
+                <div class="vision-image-box">
+                    <div class="vision-placeholder-text">
+                        Team Collaboration Photo
+                        <span>[ Placeholder for Office / Team Image ]</span>
                     </div>
                 </div>
             </div>
