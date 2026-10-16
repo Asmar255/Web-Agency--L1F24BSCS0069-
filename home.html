@@ -308,7 +308,7 @@
             max-width: 560px;
             height: 420px;
             background: #e5e7eb;
-            border-radius: 24px;
+            border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             display: flex;
@@ -329,6 +329,71 @@
             font-size: 13px;
             color: #9ca3af;
             margin-top: 5px;
+            border-radius: 24px;
+        }
+
+        /* Stats Counter Section Styles */
+        .stats-section {
+            padding: 60px 0 80px 0;
+            background-color: #ffffff;
+            color: #111827;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .stat-icon-box {
+            width: 72px;
+            height: 72px;
+            background-color: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-icon {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: #111827;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .stat-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1;
+            color: #111827;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: #4b5563;
+            font-weight: 500;
+            line-height: 1.3;
         }
     </style>
 </head>
@@ -384,17 +449,69 @@
         <div class="container vision-container">
             <div class="vision-content">
                 <h2 class="vision-title">Unforgettable, Websites, Brands & Visuals for Bold Visionaries.[cite: 1]</h2>
-                <p class="vision-description">Were not your typical design agency. Founded in 2014, we’re a collective of designers, developers, and strategists who believe great digital experiences should be beautiful, functional, and human-centered. From startups to global brands, we help ambitious businesses stand out.[cite: 1]</p>
+                <p class="vision-description">Were not your typical design agency. Founded in 2025, were a collective of designers, developers, and strategists who believe great digital experiences should be beautiful, functional, and human-centered. From startups to global brands, we help ambitious businesses stand out.</p>
                 <a href="about.html" class="btn-outline">Know More About Us</a>
             </div>
             <div class="vision-image-wrapper">
                 <div class="vision-image-box">
                     <div class="vision-placeholder-text">
-                        Team Collaboration Photo
-                        <span>[ Placeholder for Office / Team Image ]</span>
+                        <span><img src="./Assets/Know more about us section.jpg" alt="collbration photo" height="430px"></span>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter Section -->
+    <section class="stats-section">
+        <div class="container stats-grid">
+            
+            <!-- Stat Item 1 -->
+            <div class="stat-item">
+                <div class="stat-icon-box">
+                    <svg class="stat-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="2" x2="12" y2="6"></line>
+                        <line x1="12" y1="18" x2="12" y2="22"></line>
+                        <line x1="2" y1="12" x2="6" y2="12"></line>
+                        <line x1="18" y1="12" x2="22" y2="12"></line>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number">72</span>
+                    <span class="stat-label">Hour Prototype Guarantee</span>
+                </div>
+            </div>
+
+            <!-- Stat Item 2 -->
+            <div class="stat-item">
+                <div class="stat-icon-box">
+                    <svg class="stat-icon" viewBox="0 0 24 24">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Brands Transformed</span>
+                </div>
+            </div>
+
+            <!-- Stat Item 3 -->
+            <div class="stat-item">
+                <div class="stat-icon-box">
+                    <svg class="stat-icon" viewBox="0 0 24 24">
+                        <path d="M9 18h6"></path>
+                        <path d="M10 22h4"></path>
+                        <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number">1+</span>
+                    <span class="stat-label">Years of Pixel-Perfect Craft</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
