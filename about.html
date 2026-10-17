@@ -118,7 +118,118 @@
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
 
-        
+        /* About Hero Section Styles */
+        .about-hero-section {
+            padding: 80px 0 100px 0;
+            background-color: #0f1016;
+            color: #ffffff;
+        }
+
+        .about-hero-header {
+            max-width: 800px;
+            margin-bottom: 60px;
+        }
+
+        .about-hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .about-hero-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-hero-images {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .about-img-box {
+            background: linear-gradient(135deg, #1e1f29 0%, #13141b 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c5ce7;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-img-box-1 {
+            width: 48%;
+            height: 320px;
+        }
+
+        .about-img-box-2 {
+            width: 52%;
+            height: 380px;
+        }
+
+        .about-img-box span {
+            display: block;
+            font-size: 12px;
+            color: #b3b3ba;
+            font-weight: 400;
+            margin-top: 6px;
+        }
+
+        .about-hero-content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .about-hero-description {
+            font-size: 17px;
+            color: #b3b3ba;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .about-hero-description span {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .showreel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .showreel-link:hover {
+            color: #6c5ce7;
+        }
+
+        .showreel-icon {
+            width: 44px;
+            height: 44px;
+            background-color: #6c5ce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .showreel-link:hover .showreel-icon {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -142,6 +253,46 @@
             <a href="contact.html" class="btn-primary">Schedule a Call</a>
         </div>
     </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero-section">
+        <div class="container">
+            
+            <div class="about-hero-header">
+                <h1 class="about-hero-title">We Design & Build Digital Experiences That Move the Needle</h1>
+            </div>
+
+            <div class="about-hero-grid">
+                
+                <!-- Dual Image Showcase -->
+                <div class="about-hero-images">
+                    <div class="about-img-box about-img-box-1">
+                        <div>
+                            Studio Workspace
+                            <span>[ About Image 01 ]</span>
+                        </div>
+                    </div>
+                    <div class="about-img-box about-img-box-2">
+                        <div>
+                            Creative Process
+                            <span>[ About Image 02 ]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text & Showreel Content -->
+                <div class="about-hero-content">
+                    <p class="about-hero-description">
+                        Were not your average design shop. Were a <span>strategic creative studio</span> that blends jaw-dropping aesthetics with ruthless functionality. Since 2017, we’ve helped 100+ startups, agencies, and scale-ups transform their ideas into <span>high-performing websites, apps, and brands</span> that stand out and convert.
+                    </p>
+
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </section>
 
 </body>
 </html>
