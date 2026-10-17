@@ -227,6 +227,85 @@
         .round-img {
             border-radius: 20px;
         }
+
+        /* How We Work Section Styles */
+        .process-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            color: #111827;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .process-title {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #111827;
+        }
+
+        .process-grid {
+            display: flex;
+            gap: 30px;
+        }
+
+        .process-card {
+            flex: 1;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            border-color: #6c5ce7;
+        }
+
+        .process-step-tag {
+            font-size: 13px;
+            font-weight: 700;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .process-card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 14px;
+        }
+
+        .process-card-desc {
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .process-icon-box {
+            width: 48px;
+            height: 48px;
+            background-color: #eef2ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c5ce7;
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
     </style>
 </head>
 <body>
@@ -280,6 +359,51 @@
                     <p class="about-hero-description">
                         Were not your average design shop. Were a <span>strategic creative studio</span> that blends jaw-dropping aesthetics with ruthless functionality. Since 2017, we’ve helped 100+ startups, agencies, and scale-ups transform their ideas into <span>high-performing websites, apps, and brands</span> that stand out and convert.
                     </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section class="process-section">
+        <div class="container">
+            
+            <div class="process-header">
+                <h2 class="process-title">How We Work: Painless, Proven, Pixel-Perfect</h2>
+            </div>
+
+            <div class="process-grid">
+
+                <!-- Step 1 -->
+                <div class="process-card">
+                    <div>
+                        <span class="process-step-tag">Step 1</span>
+                        <div class="process-icon-box">🔍</div>
+                        <h3 class="process-card-title">Discover</h3>
+                        <p class="process-card-desc">We dive deep into your goals, targets, and "must-haves" to craft a custom battle plan.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-card">
+                    <div>
+                        <span class="process-step-tag">Step 2</span>
+                        <div class="process-icon-box">✏️</div>
+                        <h3 class="process-card-title">Design & Build</h3>
+                        <p class="process-card-desc">You'll see real work fast—with clear checkpoints to refine and polish every detail.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-card">
+                    <div>
+                        <span class="process-step-tag">Step 3</span>
+                        <div class="process-icon-box">🚀</div>
+                        <h3 class="process-card-title">Launch & Grow</h3>
+                        <p class="process-card-desc">We don't just deliver—we optimize and support your product for long-term growth.</p>
+                    </div>
                 </div>
 
             </div>
