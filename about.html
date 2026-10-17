@@ -306,6 +306,110 @@
             font-size: 20px;
             margin-bottom: 24px;
         }
+
+        /* Story Section Styles */
+        .story-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            color: #111827;
+        }
+
+        .story-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .story-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .story-image-box {
+            width: 100%;
+            max-width: 540px;
+            height: 480px;
+            background: #e5e7eb;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .story-placeholder-text {
+            color: #6b7280;
+            font-weight: 500;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .story-placeholder-text span {
+            display: block;
+            font-size: 13px;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
+
+        .story-content {
+            flex: 1;
+            max-width: 560px;
+        }
+
+        .story-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #111827;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .story-description {
+            font-size: 16px;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .story-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+
+        .story-list-item {
+            font-size: 16px;
+            color: #111827;
+            font-weight: 500;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .story-list-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-check-icon {
+            width: 22px;
+            height: 22px;
+            background-color: #111827;
+            color: #ffffff;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -406,6 +510,50 @@
                     </div>
                 </div>
 
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container story-container">
+            
+            <!-- Left Image Showcase -->
+            <div class="story-image-wrapper">
+                <div class="story-image-box">
+                    <div class="story-placeholder-text">
+                        <span><img src="./Assets/about-discussion-our-story-section.jpg" alt=""></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Text Content -->
+            <div class="story-content">
+                <h2 class="story-title">From Garage Dreams to Pixel-Perfect Reality.</h2>
+                
+                <p class="story-description">
+                    We didn't start AFN Agency to follow design trends—we started it to blow them up. Back in 2025, our founders – Two Caffeine Fueled Dev & Design hybrids were sick of agencies overpromising and underdelivering. So we built our own damn studio.
+                </p>
+
+                <p class="story-description">
+                    Today? We're a squad of 15 designers, developers, and no-code wizards who still operate like a startup:
+                </p>
+
+                <ul class="story-list">
+                    <li class="story-list-item">
+                        <span class="story-check-icon">✓</span>
+                        <span>Turning complex problems into intuitive interfaces.</span>
+                    </li>
+                    <li class="story-list-item">
+                        <span class="story-check-icon">✓</span>
+                        <span>Building brands that people remember.</span>
+                    </li>
+                    <li class="story-list-item">
+                        <span class="story-check-icon">✓</span>
+                        <span>Pushing no-code tools to their absolute limits.</span>
+                    </li>
+                </ul>
             </div>
 
         </div>
