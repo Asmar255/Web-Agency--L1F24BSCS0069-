@@ -493,6 +493,120 @@
             color: #6c5ce7;
             font-weight: bold;
         }
+
+        /* Portfolio Showcase Section Styles */
+        .portfolio-section {
+            padding: 100px 0;
+            background-color: #f3f3f3;
+            color: #111827;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+        }
+
+        .portfolio-subtitle {
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #6c5ce7;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .portfolio-title {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #004ae8;
+        }
+
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .portfolio-card {
+            width: calc(50% - 15px);
+            background-color: #f9fafb;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .portfolio-image-box {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 18px;
+            position: relative;
+        }
+
+        .portfolio-image-box span {
+            display: block;
+            font-size: 13px;
+            color: #9ca3af;
+            font-weight: 400;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .portfolio-content {
+            padding: 28px;
+        }
+
+        .portfolio-category {
+            font-size: 13px;
+            font-weight: 700;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .portfolio-item-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-tag {
+            background-color: #eef2ff;
+            color: #4f46e5;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .portfolio-footer {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -546,7 +660,7 @@
     <section class="vision-section">
         <div class="container vision-container">
             <div class="vision-content">
-                <h2 class="vision-title">Unforgettable, Websites, Brands & Visuals for Bold Visionaries.[cite: 1]</h2>
+                <h2 class="vision-title">Unforgettable, Websites, Brands & Visuals for Bold Visionaries.</h2>
                 <p class="vision-description">Were not your typical design agency. Founded in 2025, were a collective of designers, developers, and strategists who believe great digital experiences should be beautiful, functional, and human-centered. From startups to global brands, we help ambitious businesses stand out.</p>
                 <a href="about.html" class="btn-outline">Know More About Us</a>
             </div>
@@ -672,6 +786,100 @@
                     </ul>
                 </div>
 
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Showcase of Selected Work Section -->
+    <section class="portfolio-section">
+        <div class="container">
+            
+            <div class="portfolio-header">
+                <div>
+                    <span class="portfolio-subtitle">Featured Projects</span>
+                    <h2 class="portfolio-title">Showcase of Selected Work</h2>
+                </div>
+            </div>
+
+            <div class="portfolio-grid">
+
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image-box">
+                        <div>
+                            FinTech Dashboard
+                            <span>[ Project Mockup Preview ]</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Branding</span>
+                        <h3 class="portfolio-item-title">FinTech Startup - Stealth Mode</h3>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Simplified IA</span>
+                            <span class="portfolio-tag">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image-box">
+                        <div>
+                            LawLex Webflow
+                            <span>[ Project Mockup Preview ]</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Branding</span>
+                        <h3 class="portfolio-item-title">LawLex - Webflow Website</h3>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">CMS</span>
+                            <span class="portfolio-tag">Dynamic Filtering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image-box">
+                        <div>
+                            Greenify App
+                            <span>[ Project Mockup Preview ]</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Webflow Development</span>
+                        <h3 class="portfolio-item-title">Greenify - Social Engagement</h3>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Animation</span>
+                            <span class="portfolio-tag">Bold Color Palette</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image-box">
+                        <div>
+                            Quizora MVP
+                            <span>[ Project Mockup Preview ]</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">No-Code Development</span>
+                        <h3 class="portfolio-item-title">Quizora - No-Code MVP for EdTech</h3>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Gamified</span>
+                            <span class="portfolio-tag">Stripe Subscription</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="portfolio-footer">
+                <a href="portfolio.html" class="btn-outline">View All Case Studies</a>
             </div>
 
         </div>
