@@ -607,6 +607,256 @@
         .portfolio-footer {
             text-align: center;
         }
+
+        /* Testimonials Section Styles */
+        .testimonials-section {
+            padding: 100px 0;
+            background-color: #0f1016;
+            color: #ffffff;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-subtitle {
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #6c5ce7;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .testimonials-title {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .testimonials-grid {
+            display: flex;
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            flex: 1;
+            background-color: #161722;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(108, 92, 231, 0.4);
+        }
+
+        .testimonial-rating-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rating-star {
+            color: #fbc531;
+            font-size: 14px;
+        }
+
+        .rating-score {
+            font-weight: 700;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .testimonial-quote {
+            font-size: 16px;
+            color: #b3b3ba;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #2d2e3d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #6c5ce7;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .author-role {
+            font-size: 13px;
+            color: #888893;
+        }
+
+        /* Footer & CTA Section Styles */
+        .cta-banner-section {
+            padding: 80px 0;
+            background-color: #161722;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .cta-banner-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-banner-desc {
+            font-size: 16px;
+            color: #b3b3ba;
+            margin-bottom: 30px;
+        }
+
+
+        .footer-section {
+            padding: 80px 0 40px 0;
+            background-color: #0f1016;
+            color: #b3b3ba;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col-brand {
+            flex: 1.5;
+            min-width: 280px;
+        }
+
+        .footer-logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: #6c5ce7;
+        }
+
+        .footer-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #b3b3ba;
+            margin-bottom: 24px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .social-link:hover {
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+
+        .footer-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-link-item {
+            margin-bottom: 12px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: #b3b3ba;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+        }
+        
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #888893;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
     </style>
 </head>
 <body>
@@ -614,7 +864,7 @@
     <!-- Header Section -->
     <header class="navbar">
         <div class="container navbar-content">
-            <a href="index.html" class="brand-logo">Agency<span>.</span></a>
+            <a href="index.html" class="brand-logo">AFN<span>.</span></a>
             
             <nav>
                 <ul class="nav-links">
@@ -880,6 +1130,117 @@
 
         </div>
     </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            
+            <div class="testimonials-header">
+                <span class="testimonials-subtitle">Testimonials</span>
+                <h2 class="testimonials-title">What Clients Say About Us</h2>
+            </div>
+
+            <div class="testimonials-grid">
+
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-rating-box">
+                            <span class="rating-star">★</span>
+                            <span class="rating-score">4.7</span>
+                        </div>
+                        <p class="testimonial-quote">“We struggled with user drop-offs for months. AFN Agency redesigned our dashboard with intuitive workflows, and our retention skyrocketed by 40% in 30 days. Their team actually listens to users—no ego, just data-driven design.”</p>
+                    </div>
+                    <div class="testimonial-author-box">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <span class="author-name">Sarah K.</span>
+                            <span class="author-role">CEO of Greenify</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-rating-box">
+                            <span class="rating-star">★</span>
+                            <span class="rating-score">4.9</span>
+                        </div>
+                        <p class="testimonial-quote">“Our old branding looked like every other brewery. AFN Agency gave us a bold, hoppy-inspired identity that's now on merch, trucks, and even trade shows. Sales jumped 65% post-rebrand—worth every penny.”</p>
+                    </div>
+                    <div class="testimonial-author-box">
+                        <div class="author-avatar">DR</div>
+                        <div class="author-info">
+                            <span class="author-name">David R.</span>
+                            <span class="author-role">Founder of BrewCraft</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pre-Footer Strategy Call Section -->
+    <section class="cta-banner-section">
+        <div class="container">
+            <h2 class="cta-banner-title">Meet the Minds Behind the Magic</h2>
+            <p class="cta-banner-desc">Get a free 30-minute strategy session with our lead designer.</p>
+            <a href="contact.html" class="btn-primary">Book a Free Call</a>
+            
+        </div>
+    </section>
+
+    <!-- Main Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Column 1: Brand & Socials -->
+                <div class="footer-col footer-col-brand">
+                    <a href="index.html" class="footer-logo">Agency<span>.</span></a>
+                    <p class="footer-desc">We craft high-performance digital experiences that drive real business results.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link">Ig</a>
+                        <a href="#" class="social-link">Fb</a>
+                        <a href="#" class="social-link">In</a>
+                        <a href="#" class="social-link">X</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link-item"><a href="index.html" class="footer-link">Home</a></li>
+                        <li class="footer-link-item"><a href="about.html" class="footer-link">About</a></li>
+                        <li class="footer-link-item"><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li class="footer-link-item"><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                        <li class="footer-link-item"><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Services -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">UI/UX Design</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">Brand Design</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">Webflow Development</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">No-Code Development</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>Copyright © 2026 Agency All rights reserved</p>
+                <a href="#" class="footer-link">Scroll to Top</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
