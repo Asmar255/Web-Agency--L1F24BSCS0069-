@@ -117,6 +117,103 @@
             border-color: #5b4cc4;
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
+
+        /* Services Hero Section Styles */
+        .services-hero-section {
+            padding: 80px 0 100px 0;
+            background-color: #0f1016;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .services-hero-content {
+            flex: 1;
+            max-width: 580px;
+        }
+
+        .services-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(108, 92, 231, 0.1);
+            color: #a29bfe;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .services-hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .services-hero-title span {
+            color: #6c5ce7;
+        }
+
+        .services-hero-description {
+            font-size: 16px;
+            color: #b3b3ba;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .services-hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .services-hero-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .services-hero-image-box {
+            width: 100%;
+            max-width: 500px;
+            height: 380px;
+            background: linear-gradient(135deg, #1e1f29 0%, #13141b 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .services-hero-placeholder-text {
+            text-align: center;
+            color: #6c5ce7;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .services-hero-placeholder-text span {
+            display: block;
+            font-size: 13px;
+            color: #b3b3ba;
+            font-weight: 400;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -140,6 +237,31 @@
             <a href="contact.html" class="btn-primary">Schedule a Call</a>
         </div>
     </header>
+
+    <!-- Services Hero Section -->
+    <section class="services-hero-section">
+        <div class="container services-hero-container">
+            <div class="services-hero-content">
+                <div class="services-hero-badge">
+                    <span>⚡</span> Our Expertise
+                </div>
+                <h1 class="services-hero-title">High-Impact Digital Solutions <span>Crafted for Growth</span></h1>
+                <p class="services-hero-description">From user-centered interface design and memorable brand identities to lightning-fast Webflow builds and scalable no-code applications, we deliver end-to-end digital experiences.</p>
+                <div class="services-hero-buttons">
+                    <a href="contact.html" class="btn-primary">Schedule a Call</a>
+                    <a href="#services-detail" class="btn-secondary">Explore All Services</a>
+                </div>
+            </div>
+            <div class="services-hero-image-wrapper">
+                <div class="services-hero-image-box">
+                    <div class="services-hero-placeholder-text">
+                        Services Portfolio Graphic
+                        <span>[ Placeholder for Digital Services Overview Visual ]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
