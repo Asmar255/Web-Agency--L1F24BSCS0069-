@@ -157,45 +157,89 @@
             border-radius: 100px;
         }
 
-        /* Explore skill section  */
-        .explore-skill-section {
+        /* Portfolio Grid Section Styles */
+        .portfolio-grid-section {
+            padding: 100px 0;
             background-color: #ffffff;
-            padding-top: 80px;
-            color: #0f1016;
+            color: #111827;
         }
 
-        .explore-section-headings {
-            margin: auto;
-            width: 55%;
+        .portfolio-grid-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .portfolio-grid-title {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-grid-desc {
+            font-size: 16px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .projects-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .project-card {
+            width: calc(33.333% - 20px);
+            background-color: #f9fafb;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-image-box {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .project-image-box span {
+            display: block;
+            font-size: 13px;
+            color: #9ca3af;
+            font-weight: 400;
+            margin-top: 6px;
             text-align: center;
         }
 
-        .explore-main-heading {
-            font-size: 45px;
-            font-weight: 500;
+        .project-content {
+            padding: 24px;
         }
 
-        .explore-sub-heading {
-            font-size: 18px;
-            margin-top: 20px;
-            font-weight: 400;
+        .project-category {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .explore-card-container {
-            width: 100%;
-            overflow: hidden;
-            margin-top: 50px;
-        }
+        /* Minds behind it section */
 
-        .explore-card {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-        .card{
-            
-        }
     </style>
 </head>
 
@@ -241,31 +285,90 @@
         </div>
     </div>
 
-    <!-- Explore Services section -->
-    <div class="explore-skill-section">
-        <div class="explore-section-headings">
-            <h1 class="explore-main-heading">Explore Our Creative Work and Success Stories</h1>
-            <p class="explore-sub-heading">
-                Browse through a curated selection of our finest projects across industries.
-                Each design showcases our commitment to innovation, strategy, and excellence to
-                elevate brands and deliver measurable results that leave a lasting impression.
-            </p>
-        </div>
-        <div class="explore-card-container">
-            <div class="explore-card">
-                <div class="card">
-                    <img src="/Assets/Fintech img.jpg" alt="" height="400px" width="370px">
-                    <div class="descryption-card-bar"></div>
-                </div>
-                <div class="card">
-                    <img src="/Assets/Quizora.jpg" alt="" height="400px" width="370px">
-                </div>
-                <div class="card">
-                    <img src="/Assets/Greenify.jpg" alt="" height="400px" width="370px">
-                </div>
+    <!-- Explore Creative Work Section -->
+    <section class="portfolio-grid-section">
+        <div class="container">
+            
+            <div class="portfolio-grid-header">
+                <h2 class="portfolio-grid-title">Explore Our Creative Work and Success Stories</h2>
+                <p class="portfolio-grid-desc">Browse through a curated selection of our finest projects across industries. Each design showcases our commitment to innovation, strategy, and excellence to elevate brands and deliver measurable results.</p>
             </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image-box">
+                        <div>
+                            <span><img src="/Assets/service-02BrandDesign.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-category">Branding</h5>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-box">
+                        <div>
+                            <span><img src="/Assets/service img 1.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-category">Webflow Development</h5>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image-box">
+                        <div>
+                            <span><img src="/Assets/service-01UI.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-category">application Design</h5>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image-box">
+                        <div>
+                            <span><img src="/Assets/service-04NoCode.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-category">No-code Development</h5>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image-box">
+                        <div>
+                            <span><img src="/Assets/service-01UI.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-category">UX Design</h5>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-image-box">
+                        <div>
+                            <span><img src="/Assets/service-02BrandDesign.jpg" alt=""></span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h5 class="project-category">Brand Design</h5>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </div>
+    </section>
 </body>
 
 </html>
