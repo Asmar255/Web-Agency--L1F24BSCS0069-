@@ -152,6 +152,114 @@
             max-width: 600px;
             margin: 0 auto;
         }
+
+        /* Blog Grid Section Styles */
+        .blog-grid-section {
+            padding: 60px 0 100px 0;
+            background-color: #ffffff;
+            color: #111827;
+        }
+
+        .blog-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            cursor: pointer;
+        }
+
+        .blog-card {
+            width: calc(33.333% - 20px);
+            background-color: #f9fafb;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .blog-image-box {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .blog-image-box span {
+            display: block;
+            font-size: 12px;
+            color: #9ca3af;
+            font-weight: 400;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .blog-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .blog-tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .blog-post-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .blog-meta {
+            font-size: 13px;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* "No More Posts" Button Styling */
+        .no-more-posts-wrapper {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-disabled {
+            display: inline-block;
+            background-color: #f3f4f6;
+            color: #9ca3af;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #e5e7eb;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -182,6 +290,192 @@
             <div class="blog-hero-badge">⚡ Design & No-Code Insights</div>
             <h1 class="blog-hero-title">Design & No-Code Insights</h1>
             <p class="blog-hero-subtitle">Get actionable tips and war stories—no fluff, just fuel. Join 5,000+ builders.</p>
+        </div>
+    </section>
+
+   <!-- Blog Grid Section -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <div class="blog-grid">
+
+                <!-- Post 1 -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img1.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Branding</span>
+                            <h3 class="blog-post-title">How We Made a Boring B2B Brand Go Viral</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>1 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blogimg2.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Web Development</span>
+                            <h3 class="blog-post-title">How We Built A 98/100 PageSpeed Score Website In 2 Weeks</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>1 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img3.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Branding</span>
+                            <h3 class="blog-post-title">The $500 Rebrand That Made Our Client Look Like A Fortune 500</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>2 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 4 -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img4.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Web Development</span>
+                            <h3 class="blog-post-title">How We Automated 80% Of Client Onboarding With No-Code</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>2 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 5 -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img5.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">UI/UX Design</span>
+                            <h3 class="blog-post-title">Mobile-First Design Mistakes That Are Costing You Customers</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>2 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 6 -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img7.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Web Development</span>
+                            <h3 class="blog-post-title">The Lazy Developer's Guide To SEO-Friendly Site Structures</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>2 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 7 (New) -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img6.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Web Development</span>
+                            <h3 class="blog-post-title">WordPress vs Webflow – Our Developers Settle The Debate</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>2 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 8 (New) -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img8.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">Branding</span>
+                            <h3 class="blog-post-title">Why Your Logo Colors Are Driving Away Your Ideal Customers</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>1 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 9 (New) -->
+                <div class="blog-card">
+                    <div class="blog-image-box">
+                        <div>
+                            <span><img src="/Assets/blog-img9.jpg" alt="" height="220px"></span>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div>
+                            <span class="blog-tag">UI/UX Design</span>
+                            <h3 class="blog-post-title">How We Boosted Client Conversions 200% With Smarter UI/UX</h3>
+                        </div>
+                        <div class="blog-meta">
+                            <span>April 23, 2025</span>
+                            <span>1 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Disabled Button -->
+            <div class="no-more-posts-wrapper">
+                <span class="btn-disabled">No more posts to show</span>
+            </div>
+
         </div>
     </section>
 
