@@ -231,6 +231,225 @@
             font-weight: 500;
             font-size: 14px;
         }
+
+        /* Where to Find Us Section Styles */
+        .location-section {
+            padding: 90px 0;
+            background-color: #13141b; /* Custom distinct background color */
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .location-wrapper {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .location-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .location-subtitle {
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #6c5ce7;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .location-title {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .location-desc {
+            font-size: 15px;
+            color: #b3b3ba;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .location-socials {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+
+        .map-container {
+            flex: 1.2;
+            min-width: 320px;
+            height: 380px;
+            background-color: #1a1b26;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: invert(90%) hue-rotate(180deg); 
+        }
+
+        /* Footer & CTA Section Styles */
+        .cta-banner-section {
+            padding: 80px 0;
+            background-color: #161722;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .cta-banner-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-banner-desc {
+            font-size: 16px;
+            color: #b3b3ba;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            padding: 80px 0 40px 0;
+            background-color: #0f1016;
+            color: #b3b3ba;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col-brand {
+            flex: 1.5;
+            min-width: 280px;
+        }
+
+        .footer-logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: #6c5ce7;
+        }
+
+        .footer-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #b3b3ba;
+            margin-bottom: 24px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+
+        .footer-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-link-item {
+            margin-bottom: 12px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: #b3b3ba;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #888893;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
     </style>
 </head>
 <body>
@@ -295,6 +514,97 @@
         </div>
     </section>
 
+    <!-- Where Can You Find Us Section -->
+    <section class="location-section">
+        <div class="container">
+            <div class="location-wrapper">
+                
+                <!-- Left: Details & Socials -->
+                <div class="location-details">
+                    <span class="location-subtitle">Location & Socials</span>
+                    <h2 class="location-title">Where Can You Find Us</h2>
+                    <p class="location-desc">Visit our headquarters or connect with us across our social media platforms. We're always excited to hear from fellow creators and clients.</p>
+                    
+                    <div class="location-socials">
+                        <a href="https://www.instagram.com/muhammad_asmar_naeem?obrf=MWF1dW1rMTFuY2c3Ng==" target="_blank" class="social-btn">Instagram</a>
+                        <a href="https://x.com/AsmarNaeem16120" target="_blank" class="social-btn">X (Twitter)</a>
+                        <a href="https://www.linkedin.com/in/asmar-naeem-b95b3b346" target="_blank" class="social-btn">LinkedIn</a>
+                        <a href="#" target="_blank" class="social-btn">Facebook</a>
+                    </div>
+                </div>
+
+                <!-- Right: Embedded Interactive Map Locator -->
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54735.15365135756!2d72.4305060026437!3d30.971958309103762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39230fcd3cedea4f%3A0xfe1c69fc6dc3525a!2sToba%20Tek%20Singh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1793520559165!5m2!1sen!2s" 
+                        width="600" height="450" style="border:0;" 
+                        allowfullscreen="" loading="lazy" 
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Footer Strategy Call Section -->
+    <section class="cta-banner-section">
+        <div class="container">
+            <h2 class="cta-banner-title">Meet the Minds Behind the Magic</h2>
+            <p class="cta-banner-desc">Get a free 30-minute strategy session with our lead designer.</p>
+            <a href="contact.html" class="btn-primary">Book a Free Call</a>
+        </div>
+    </section>
+
+    <!-- Main Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Column 1: Brand & Real Social Links -->
+                <div class="footer-col footer-col-brand">
+                    <a href="home.html" class="footer-logo">Agency<span>.</span></a>
+                    <p class="footer-desc">We craft high-performance digital experiences that drive real business results.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/muhammad_asmar_naeem?obrf=MWF1dW1rMTFuY2c3Ng==" target="_blank" class="social-link">Ig</a>
+                        <a href="#" target="_blank" class="social-link">Fb</a>
+                        <a href="https://www.linkedin.com/in/asmar-naeem-b95b3b346" target="_blank" class="social-link">In</a>
+                        <a href="https://x.com/AsmarNaeem16120" target="_blank" class="social-link">X</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link-item"><a href="home.html" class="footer-link">Home</a></li>
+                        <li class="footer-link-item"><a href="about.html" class="footer-link">About</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">Services</a></li>
+                        <li class="footer-link-item"><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                        <li class="footer-link-item"><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li class="footer-link-item"><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Services -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">UI/UX Design</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">Brand Design</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">Webflow Development</a></li>
+                        <li class="footer-link-item"><a href="services.html" class="footer-link">No-Code Development</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>Copyright © 2026 Agency All rights reserved</p>
+                <a href="#" class="footer-link">Scroll to Top</a>
+            </div>
+        </div>
+    </footer>
 
 
 
