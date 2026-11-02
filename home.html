@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agency - Home</title>
     <style>
         /* Base Reset & Variables */
@@ -11,11 +12,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0f1016;
             color: #ffffff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -26,6 +32,11 @@
 
         ul {
             list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         /* Container for uniform section alignment */
@@ -41,8 +52,19 @@
             background-color: #0f1016;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            z-index: 100;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* JS Sticky Header State */
+        .navbar.scrolled {
+            background-color: rgba(15, 16, 22, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 14px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .navbar-content {
@@ -57,6 +79,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #ffffff;
+            z-index: 1001;
         }
 
         .brand-logo span {
@@ -96,6 +119,39 @@
             height: 2px;
             background-color: #6c5ce7;
             border-radius: 2px;
+        }
+
+        /* Mobile Hamburger Button (Hidden on Desktop) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
 
         /* Header Button */
@@ -163,6 +219,13 @@
 
         .hero-title span {
             color: #6c5ce7;
+            display: inline-block;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .hero-title span.text-fade-out {
+            opacity: 0;
+            transform: translateY(8px);
         }
 
         .hero-description {
@@ -216,6 +279,8 @@
             justify-content: center;
             position: relative;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            padding: 16px;
         }
 
         .hero-image-box::before {
@@ -233,6 +298,7 @@
             color: #6c5ce7;
             font-weight: 600;
             font-size: 18px;
+            width: 100%;
         }
 
         .hero-placeholder-text span {
@@ -240,7 +306,14 @@
             font-size: 13px;
             color: #b3b3ba;
             font-weight: 400;
-            margin-top: 5px;
+            margin-top: 10px;
+        }
+
+        .hero-placeholder-text img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
         /* Visionary Section Styles */
@@ -317,19 +390,17 @@
             position: relative;
         }
 
-        .vision-placeholder-text {
-            color: #6b7280;
-            font-weight: 500;
-            text-align: center;
-            font-size: 16px;
+        .vision-placeholder-text,
+        .vision-placeholder-text span {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
-        .vision-placeholder-text span {
-            display: block;
-            font-size: 13px;
-            color: #9ca3af;
-            margin-top: 5px;
-            border-radius: 24px;
+        .vision-placeholder-text img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Stats Counter Section Styles */
@@ -437,7 +508,23 @@
             border-radius: 20px;
             padding: 40px;
             width: calc(50% - 15px);
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Interactive Cursor Glow Effect via JS */
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+                rgba(108, 92, 231, 0.14),
+                transparent 40%
+            );
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
         .service-card:hover {
@@ -538,6 +625,7 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid #e5e7eb;
+            cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -557,15 +645,25 @@
             font-weight: 600;
             font-size: 18px;
             position: relative;
+            overflow: hidden;
         }
 
+        .portfolio-image-box div,
         .portfolio-image-box span {
+            width: 100%;
+            height: 100%;
             display: block;
-            font-size: 13px;
-            color: #9ca3af;
-            font-weight: 400;
-            margin-top: 6px;
-            text-align: center;
+        }
+
+        .portfolio-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image-box img {
+            transform: scale(1.05);
         }
 
         .portfolio-content {
@@ -606,6 +704,79 @@
 
         .portfolio-footer {
             text-align: center;
+        }
+
+        /* Portfolio Quick-View Modal */
+        .portfolio-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(15, 16, 22, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .portfolio-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background-color: #161722;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-modal.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(15, 16, 22, 0.75);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body .portfolio-item-title {
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .modal-body .portfolio-tags {
+            margin-bottom: 24px;
         }
 
         /* Testimonials Section Styles */
@@ -751,7 +922,6 @@
             margin-bottom: 30px;
         }
 
-
         .footer-section {
             padding: 80px 0 40px 0;
             background-color: #0f1016;
@@ -844,7 +1014,6 @@
         .footer-link:hover {
             color: #ffffff;
         }
-        
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -857,18 +1026,176 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+
+        /* Tablets & Small Laptops (Max 992px) */
+        @media (max-width: 992px) {
+            .hero-container,
+            .vision-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-content,
+            .vision-content {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .vision-title,
+            .services-title,
+            .portfolio-title,
+            .testimonials-title {
+                font-size: 34px;
+            }
+
+            .stats-grid {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .stat-item {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        /* Mobile Landscape & Tablets (Max 768px) */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar-cta {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: #161722;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                transition: right 0.35s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                border-left: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero-section,
+            .vision-section,
+            .services-section,
+            .portfolio-section,
+            .testimonials-section {
+                padding: 70px 0;
+            }
+
+            .service-card,
+            .portfolio-card {
+                width: 100%;
+            }
+
+            .testimonials-grid {
+                flex-direction: column;
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .stat-item {
+                flex: 0 0 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Small Mobile Devices (Max 480px) */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .vision-title,
+            .services-title,
+            .portfolio-title,
+            .testimonials-title,
+            .cta-banner-title {
+                font-size: 28px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons a {
+                width: 100%;
+            }
+
+            .hero-image-box,
+            .vision-image-box {
+                height: 300px;
+            }
+
+            .hero-placeholder-text img {
+                height: 230px;
+            }
+
+            .service-card,
+            .testimonial-card {
+                padding: 28px 22px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Header Section -->
-    <header class="navbar">
+    <header class="navbar" id="navbar">
         <div class="container navbar-content">
             <a href="home.html" class="brand-logo">AFN<span>.</span></a>
             
             <nav>
-                <ul class="nav-links">
-                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <ul class="nav-links" id="navLinks">
+                    <li class="nav-item"><a href="home.html" class="nav-link active">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
                     <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
@@ -877,29 +1204,36 @@
                 </ul>
             </nav>
 
-            <a href="contact.html" class="btn-primary">Schedule a Call</a>
+            <a href="contact.html" class="btn-primary navbar-cta">Schedule a Call</a>
+
+            <!-- Hamburger Icon for Mobile -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container hero-container">
-            <div class="hero-content">
+            <div class="hero-content reveal">
                 <div class="hero-badge">
                     <span>🏆</span> Top 100 Design Studios in USA
                 </div>
-                <h1 class="hero-title">Where Stunning Design Meets <span>Flawless Functionality</span></h1>
+                <h1 class="hero-title">Where Stunning Design Meets <span id="rotatingText">Flawless Functionality</span></h1>
                 <p class="hero-description">We craft high-converting websites, apps, and brands for startups, agencies, and businesses that refuse to settle for good enough.</p>
                 <div class="hero-buttons">
                     <a href="contact.html" class="btn-primary">Book a Meeting</a>
                     <a href="about.html" class="btn-secondary">Know More</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper">
+            <div class="hero-image-wrapper reveal">
                 <div class="hero-image-box">
                     <div class="hero-placeholder-text">
                         Web Agency Showcase Visual
-                        <span><img src="./Assets/web agency hero section.jpg" width="500px" alt="web tech photo" height="350px"></span>
+                        <span><img src="./Assets/web agency hero section.jpg" alt="web tech photo"></span>
                     </div>
                 </div>
             </div>
@@ -909,15 +1243,15 @@
     <!-- Visionary Content Section -->
     <section class="vision-section">
         <div class="container vision-container">
-            <div class="vision-content">
+            <div class="vision-content reveal">
                 <h2 class="vision-title">Unforgettable, Websites, Brands & Visuals for Bold Visionaries.</h2>
-                <p class="vision-description">Were not your typical design agency. Founded in 2025, were a collective of designers, developers, and strategists who believe great digital experiences should be beautiful, functional, and human-centered. From startups to global brands, we help ambitious businesses stand out.</p>
+                <p class="vision-description">We're not your typical design agency. Founded in 2025, we're a collective of designers, developers, and strategists who believe great digital experiences should be beautiful, functional, and human-centered. From startups to global brands, we help ambitious businesses stand out.</p>
                 <a href="about.html" class="btn-outline">Know More About Us</a>
             </div>
-            <div class="vision-image-wrapper">
+            <div class="vision-image-wrapper reveal">
                 <div class="vision-image-box">
                     <div class="vision-placeholder-text">
-                        <span><img src="./Assets/Know more about us section.jpg" alt="collbration photo" height="430px"></span>
+                        <span><img src="./Assets/Know more about us section.jpg" alt="collaboration photo"></span>
                     </div>
                 </div>
             </div>
@@ -929,7 +1263,7 @@
         <div class="container stats-grid">
             
             <!-- Stat Item 1 -->
-            <div class="stat-item">
+            <div class="stat-item reveal">
                 <div class="stat-icon-box">
                     <svg class="stat-icon" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="10"></circle>
@@ -941,26 +1275,26 @@
                     </svg>
                 </div>
                 <div class="stat-content">
-                    <span class="stat-number">72</span>
+                    <span class="stat-number" data-target="72" data-suffix="">0</span>
                     <span class="stat-label">Hour Prototype Guarantee</span>
                 </div>
             </div>
 
             <!-- Stat Item 2 -->
-            <div class="stat-item">
+            <div class="stat-item reveal">
                 <div class="stat-icon-box">
                     <svg class="stat-icon" viewBox="0 0 24 24">
                         <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
                     </svg>
                 </div>
                 <div class="stat-content">
-                    <span class="stat-number">100+</span>
+                    <span class="stat-number" data-target="100" data-suffix="+">0+</span>
                     <span class="stat-label">Brands Transformed</span>
                 </div>
             </div>
 
             <!-- Stat Item 3 -->
-            <div class="stat-item">
+            <div class="stat-item reveal">
                 <div class="stat-icon-box">
                     <svg class="stat-icon" viewBox="0 0 24 24">
                         <path d="M9 18h6"></path>
@@ -969,7 +1303,7 @@
                     </svg>
                 </div>
                 <div class="stat-content">
-                    <span class="stat-number">1+</span>
+                    <span class="stat-number" data-target="1" data-suffix="+">0+</span>
                     <span class="stat-label">Years of Pixel-Perfect Craft</span>
                 </div>
             </div>
@@ -981,7 +1315,7 @@
     <section class="services-section">
         <div class="container">
             
-            <div class="services-header">
+            <div class="services-header reveal">
                 <span class="services-subtitle">What We Do</span>
                 <h2 class="services-title">Services We Offer</h2>
             </div>
@@ -989,7 +1323,7 @@
             <div class="services-grid">
 
                 <!-- Service 1 -->
-                <div class="service-card">
+                <div class="service-card reveal">
                     <span class="service-number">01</span>
                     <h3 class="service-name">UI/UX Design</h3>
                     <p class="service-description">Interfaces that delight users and drive conversions. We design with outcomes in mind.</p>
@@ -1001,7 +1335,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="service-card">
+                <div class="service-card reveal">
                     <span class="service-number">02</span>
                     <h3 class="service-name">Brand Design</h3>
                     <p class="service-description">Visual identities that command attention and build trust. Logos, style guides, and assets crafted to tell your story.</p>
@@ -1013,7 +1347,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="service-card">
+                <div class="service-card reveal">
                     <span class="service-number">03</span>
                     <h3 class="service-name">Webflow Development</h3>
                     <p class="service-description">Websites that load fast, rank higher, and grow with you. No bloated code—just seamless Webflow experiences.</p>
@@ -1025,7 +1359,7 @@
                 </div>
 
                 <!-- Service 4 -->
-                <div class="service-card">
+                <div class="service-card reveal">
                     <span class="service-number">04</span>
                     <h3 class="service-name">No-Code Development</h3>
                     <p class="service-description">Launch functional MVPs without engineering headaches. Solutions in weeks, not months.</p>
@@ -1045,7 +1379,7 @@
     <section class="portfolio-section">
         <div class="container">
             
-            <div class="portfolio-header">
+            <div class="portfolio-header reveal">
                 <div>
                     <span class="portfolio-subtitle">Featured Projects</span>
                     <h2 class="portfolio-title">Showcase of Selected Work</h2>
@@ -1055,10 +1389,10 @@
             <div class="portfolio-grid">
 
                 <!-- Portfolio Item 1 -->
-                <div class="portfolio-card">
+                <div class="portfolio-card reveal">
                     <div class="portfolio-image-box">
                         <div>
-                            <span><img src="./Assets/Fintech img.jpg" alt="Finteck img" width="550px" height="279px"></span>
+                            <span><img src="./Assets/Fintech img.jpg" alt="Fintech img"></span>
                         </div>
                     </div>
                     <div class="portfolio-content">
@@ -1072,10 +1406,10 @@
                 </div>
 
                 <!-- Portfolio Item 2 -->
-                <div class="portfolio-card">
+                <div class="portfolio-card reveal">
                     <div class="portfolio-image-box">
                         <div>
-                            <span><img src="./Assets/Lawlex.jpg" alt="Law consultant webiste image" width="550px" height="279px"></span>
+                            <span><img src="./Assets/Lawlex.jpg" alt="Law consultant website image"></span>
                         </div>
                     </div>
                     <div class="portfolio-content">
@@ -1089,10 +1423,10 @@
                 </div>
 
                 <!-- Portfolio Item 3 -->
-                <div class="portfolio-card">
+                <div class="portfolio-card reveal">
                     <div class="portfolio-image-box">
                         <div>
-                            <span><img src="./Assets/Greenify.jpg" alt="Social media website" width="550px" height="279px"></span>
+                            <span><img src="./Assets/Greenify.jpg" alt="Social media website"></span>
                         </div>
                     </div>
                     <div class="portfolio-content">
@@ -1106,10 +1440,10 @@
                 </div>
 
                 <!-- Portfolio Item 4 -->
-                <div class="portfolio-card">
+                <div class="portfolio-card reveal">
                     <div class="portfolio-image-box">
                         <div>
-                            <span><img src="./Assets/Quizora.jpg" alt="Quiz app" width="550px" height="279px"></span>
+                            <span><img src="./Assets/Quizora.jpg" alt="Quiz app"></span>
                         </div>
                     </div>
                     <div class="portfolio-content">
@@ -1124,7 +1458,7 @@
 
             </div>
 
-            <div class="portfolio-footer">
+            <div class="portfolio-footer reveal">
                 <a href="portfolio.html" class="btn-outline">View All Case Studies</a>
             </div>
 
@@ -1135,7 +1469,7 @@
     <section class="testimonials-section">
         <div class="container">
             
-            <div class="testimonials-header">
+            <div class="testimonials-header reveal">
                 <span class="testimonials-subtitle">Testimonials</span>
                 <h2 class="testimonials-title">What Clients Say About Us</h2>
             </div>
@@ -1143,7 +1477,7 @@
             <div class="testimonials-grid">
 
                 <!-- Testimonial 1 -->
-                <div class="testimonial-card">
+                <div class="testimonial-card reveal">
                     <div>
                         <div class="testimonial-rating-box">
                             <span class="rating-star">★</span>
@@ -1161,7 +1495,7 @@
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="testimonial-card">
+                <div class="testimonial-card reveal">
                     <div>
                         <div class="testimonial-rating-box">
                             <span class="rating-star">★</span>
@@ -1185,11 +1519,10 @@
 
     <!-- Pre-Footer Strategy Call Section -->
     <section class="cta-banner-section">
-        <div class="container">
+        <div class="container reveal">
             <h2 class="cta-banner-title">Meet the Minds Behind the Magic</h2>
             <p class="cta-banner-desc">Get a free 30-minute strategy session with our lead designer.</p>
             <a href="contact.html" class="btn-primary">Book a Free Call</a>
-            
         </div>
     </section>
 
@@ -1200,7 +1533,7 @@
                 
                 <!-- Column 1: Brand & Socials -->
                 <div class="footer-col footer-col-brand">
-                    <a href="index.html" class="footer-logo">Agency<span>.</span></a>
+                    <a href="home.html" class="footer-logo">Agency<span>.</span></a>
                     <p class="footer-desc">We craft high-performance digital experiences that drive real business results.</p>
                     <div class="footer-socials">
                         <a href="#" class="social-link">Ig</a>
@@ -1237,10 +1570,176 @@
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <p>Copyright © 2026 Agency All rights reserved</p>
-                <a href="#" class="footer-link">Scroll to Top</a>
+                <a href="#" class="footer-link" id="scrollToTop">Scroll to Top ↑</a>
             </div>
         </div>
     </footer>
 
+    <!-- Portfolio Quick-View Modal -->
+    <div class="portfolio-modal" id="portfolioModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <img src="" alt="Project Preview" class="modal-img" id="modalImg">
+            <div class="modal-body">
+                <span class="portfolio-category" id="modalCategory"></span>
+                <h3 class="portfolio-item-title" id="modalTitle"></h3>
+                <div class="portfolio-tags" id="modalTags"></div>
+                <a href="contact.html" class="btn-primary">Request Similar Project</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Sticky Glassmorphism Navbar on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Mobile Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('open');
+                navLinks.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('open');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // 3. Hero Dynamic Text Rotator
+            const rotatingText = document.getElementById('rotatingText');
+            const phrases = [
+                'Flawless Functionality',
+                'High Conversions',
+                'Bold Brand Identities',
+                'Scalable Webflow'
+            ];
+            let phraseIndex = 0;
+
+            setInterval(() => {
+                rotatingText.classList.add('text-fade-out');
+                setTimeout(() => {
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    rotatingText.textContent = phrases[phraseIndex];
+                    rotatingText.classList.remove('text-fade-out');
+                }, 350);
+            }, 3200);
+
+            // 4. Scroll-Reveal Animations & Stats Counter via IntersectionObserver
+            const revealElements = document.querySelectorAll('.reveal');
+            const statNumbers = document.querySelectorAll('.stat-number');
+            let statsAnimated = false;
+
+            const animateStats = () => {
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-target'), 10);
+                    const suffix = stat.getAttribute('data-suffix') || '';
+                    const duration = 1500;
+                    const startTime = performance.now();
+
+                    const updateCount = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        const currentVal = Math.floor(easeOut * target);
+
+                        stat.textContent = currentVal + suffix;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            stat.textContent = target + suffix;
+                        }
+                    };
+
+                    requestAnimationFrame(updateCount);
+                });
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+
+                        if (entry.target.classList.contains('stat-item') && !statsAnimated) {
+                            statsAnimated = true;
+                            animateStats();
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // 5. Cursor Spotlight Glow on Service Cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // 6. Portfolio Card Quick-View Modal
+            const portfolioCards = document.querySelectorAll('.portfolio-card');
+            const modal = document.getElementById('portfolioModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalImg = document.getElementById('modalImg');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalTags = document.getElementById('modalTags');
+
+            portfolioCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const img = card.querySelector('img');
+                    const category = card.querySelector('.portfolio-category').textContent;
+                    const title = card.querySelector('.portfolio-item-title').textContent;
+                    const tagsHTML = card.querySelector('.portfolio-tags').innerHTML;
+
+                    modalImg.src = img ? img.src : '';
+                    modalImg.alt = title;
+                    modalCategory.textContent = category;
+                    modalTitle.textContent = title;
+                    modalTags.innerHTML = tagsHTML;
+
+                    modal.classList.add('active');
+                });
+            });
+
+            const closeModal = () => modal.classList.remove('active');
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // 7. Smooth Scroll to Top
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            scrollToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
