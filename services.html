@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agency - Our Services</title>
     <style>
         /* Base Reset & Variables */
@@ -11,11 +12,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0f1016;
             color: #ffffff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -26,6 +32,11 @@
 
         ul {
             list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         /* Container for uniform section alignment */
@@ -41,8 +52,18 @@
             background-color: #0f1016;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            z-index: 100;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(15, 16, 22, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 14px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .navbar-content {
@@ -57,6 +78,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #ffffff;
+            z-index: 1001;
         }
 
         .brand-logo span {
@@ -98,7 +120,40 @@
             border-radius: 2px;
         }
 
-        /* Header Button */
+        /* Mobile Hamburger Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Buttons */
         .btn-primary {
             display: inline-block;
             background-color: #6c5ce7;
@@ -116,6 +171,24 @@
             background-color: #5b4cc4;
             border-color: #5b4cc4;
             box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         /* Services Hero Section Styles */
@@ -198,24 +271,20 @@
             justify-content: center;
             position: relative;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
         }
 
-        .services-hero-placeholder-text {
-            text-align: center;
-            color: #6c5ce7;
-            font-weight: 600;
-            font-size: 18px;
-        }
-
+        .services-hero-placeholder-text,
         .services-hero-placeholder-text span {
+            width: 100%;
+            height: 100%;
             display: block;
-            font-size: 13px;
-            color: #b3b3ba;
-            font-weight: 400;
-            margin-top: 5px;
         }
 
         .round-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 20px;
         }
 
@@ -229,7 +298,7 @@
         .services-detail-header {
             text-align: center;
             max-width: 650px;
-            margin: 0 auto 70px auto;
+            margin: 0 auto 40px auto;
         }
 
         .services-detail-subtitle {
@@ -249,12 +318,57 @@
             color: #111827;
         }
 
+        /* Interactive Service Quick-Jump Bar */
+        .service-jump-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 70px;
+            position: sticky;
+            top: 75px;
+            z-index: 90;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 40px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .jump-pill {
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4b5563;
+            background-color: transparent;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .jump-pill:hover {
+            color: #111827;
+            background-color: #f3f4f6;
+        }
+
+        .jump-pill.active {
+            background-color: #6c5ce7;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+        }
+
         .services-block {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 60px;
             margin-bottom: 90px;
+            scroll-margin-top: 150px;
         }
 
         .services-block:last-child {
@@ -299,21 +413,71 @@
             margin: 0;
         }
 
+        /* Interactive Deliverable Accordion Items */
         .service-feature-item {
             font-size: 15px;
             color: #111827;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 12px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .service-feature-item:hover {
+            border-color: #6c5ce7;
+            background-color: #f3f4f6;
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .feature-title-wrap {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .service-feature-item::before {
+        .feature-title-wrap::before {
             content: "✓";
             color: #6c5ce7;
             font-weight: bold;
             font-size: 16px;
+        }
+
+        .feature-toggle-icon {
+            font-size: 18px;
+            color: #6c5ce7;
+            font-weight: 700;
+            transition: transform 0.25s ease;
+        }
+
+        .service-feature-item.open .feature-toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .feature-detail {
+            max-height: 0;
+            overflow: hidden;
+            font-size: 13.5px;
+            font-weight: 400;
+            color: #4b5563;
+            line-height: 1.5;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .service-feature-item.open .feature-detail {
+            max-height: 120px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e5e7eb;
         }
 
         .service-visual-box {
@@ -327,21 +491,16 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            will-change: transform;
         }
 
-        .service-visual-text {
-            color: #6b7280;
-            font-weight: 600;
-            text-align: center;
-            font-size: 16px;
-        }
-
+        .service-visual-text,
         .service-visual-text span {
+            width: 100%;
+            height: 100%;
             display: block;
-            font-size: 13px;
-            color: #9ca3af;
-            font-weight: 400;
-            margin-top: 5px;
         }
 
         /* Footer & CTA Section Styles */
@@ -367,18 +526,6 @@
             margin-bottom: 30px;
         }
 
-        .cta-banner-email {
-            font-size: 15px;
-            color: #6c5ce7;
-            margin-top: 20px;
-            display: inline-block;
-            font-weight: 600;
-        }
-
-        .cta-banner-email:hover {
-            color: #a29bfe;
-        }
-
         .footer-section {
             padding: 80px 0 40px 0;
             background-color: #0f1016;
@@ -400,7 +547,7 @@
 
         .footer-col-brand {
             flex: 1.5;
-            min-width: 280px;
+            min-width: 260px;
         }
 
         .footer-logo {
@@ -500,6 +647,11 @@
             border-color: #6c5ce7;
         }
 
+        .newsletter-feedback {
+            font-size: 13px;
+            min-height: 18px;
+        }
+
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 30px;
@@ -511,17 +663,161 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+
+        /* Tablets & Small Laptops (Max 992px) */
+        @media (max-width: 992px) {
+            .services-hero-container,
+            .services-block,
+            .services-block.reverse {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .services-hero-content,
+            .service-info {
+                max-width: 100%;
+            }
+
+            .services-hero-buttons {
+                justify-content: center;
+            }
+
+            .services-hero-title {
+                font-size: 42px;
+            }
+
+            .services-detail-title {
+                font-size: 34px;
+            }
+
+            .service-block-title {
+                font-size: 28px;
+            }
+
+            .service-feature-item {
+                text-align: left;
+            }
+
+            .service-visual-box {
+                width: 100%;
+                max-width: 540px;
+            }
+        }
+
+        /* Mobile Landscape & Tablets (Max 768px) */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar-cta {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: #161722;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                transition: right 0.35s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                border-left: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .services-hero-section,
+            .services-detail-section {
+                padding: 70px 0;
+            }
+
+            .service-jump-nav {
+                position: static;
+                border-radius: 16px;
+                margin-bottom: 50px;
+            }
+
+            .services-block {
+                margin-bottom: 65px;
+            }
+        }
+
+        /* Small Mobile Devices (Max 480px) */
+        @media (max-width: 480px) {
+            .services-hero-title {
+                font-size: 32px;
+            }
+
+            .services-detail-title,
+            .cta-banner-title {
+                font-size: 28px;
+            }
+
+            .service-block-title {
+                font-size: 24px;
+            }
+
+            .services-hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .services-hero-buttons a {
+                width: 100%;
+            }
+
+            .services-hero-image-box,
+            .service-visual-box {
+                height: 260px;
+            }
+
+            .jump-pill {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Header Section -->
-    <header class="navbar">
+    <header class="navbar" id="navbar">
         <div class="container navbar-content">
             <a href="home.html" class="brand-logo">AFN<span>.</span></a>
             
             <nav>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
@@ -531,14 +827,21 @@
                 </ul>
             </nav>
 
-            <a href="contact.html" class="btn-primary">Schedule a Call</a>
+            <a href="contact.html" class="btn-primary navbar-cta">Schedule a Call</a>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
     <!-- Services Hero Section -->
     <section class="services-hero-section">
         <div class="container services-hero-container">
-            <div class="services-hero-content">
+            <div class="services-hero-content reveal">
                 <div class="services-hero-badge">
                     <span>⚡</span> Our Expertise
                 </div>
@@ -549,10 +852,10 @@
                     <a href="#services-detail" class="btn-secondary">Explore All Services</a>
                 </div>
             </div>
-            <div class="services-hero-image-wrapper">
+            <div class="services-hero-image-wrapper reveal">
                 <div class="services-hero-image-box">
                     <div class="services-hero-placeholder-text">
-                        <span><img src="./Assets/service img 1.jpg" alt="" height="380px" width="500px" class="round-img"></span>
+                        <span><img src="./Assets/service img 1.jpg" alt="Our Digital Services" class="round-img"></span>
                     </div>
                 </div>
             </div>
@@ -563,83 +866,163 @@
     <section class="services-detail-section" id="services-detail">
         <div class="container">
             
-            <div class="services-detail-header">
+            <div class="services-detail-header reveal">
                 <span class="services-detail-subtitle">End-to-End Solutions</span>
                 <h2 class="services-detail-title">Everything You Need to Scale Online</h2>
             </div>
 
+            <!-- Interactive Service Quick-Jump Filter Bar -->
+            <div class="service-jump-nav reveal" id="serviceJumpNav">
+                <button class="jump-pill active" data-target="service-1">01. UI/UX Design</button>
+                <button class="jump-pill" data-target="service-2">02. Brand Design</button>
+                <button class="jump-pill" data-target="service-3">03. Webflow</button>
+                <button class="jump-pill" data-target="service-4">04. No-Code</button>
+            </div>
+
             <!-- Service 1: UI/UX Design -->
-            <div class="services-block">
+            <div class="services-block reveal" id="service-1">
                 <div class="service-info">
                     <span class="service-tag">01 / UI & UX DESIGN</span>
                     <h3 class="service-block-title">Interfaces That Delight Users & Drive Conversions</h3>
                     <p class="service-block-desc">We design intuitive, human-centered digital products grounded in user research and functional beauty. From initial wireframes to interactive prototypes, we ensure seamless user journeys.</p>
                     <ul class="service-features-list">
-                        <li class="service-feature-item">User Research & Wireframing</li>
-                        <li class="service-feature-item">Interactive Prototypes in 72 Hours</li>
-                        <li class="service-feature-item">Mobile-First UI Design Systems</li>
+                        <li class="service-feature-item" data-detail="In-depth user personas, journey mapping, and low-fidelity architectural blueprints before we touch pixels.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">User Research & Wireframing</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Clickable Figma prototypes delivered within 3 business days so you can test and validate flows with real users.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Interactive Prototypes in 72 Hours</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Reusable component libraries, responsive tokens, and developer-ready handoff specs in Figma.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Mobile-First UI Design Systems</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
                     </ul>
                 </div>
                 <div class="service-visual-box">
                     <div class="service-visual-text">
-                        <span><img src="./Assets/service-01UI.jpg" alt="UI/UX Design" height="355px" class="round-img"></span>
+                        <span><img src="./Assets/service-01UI.jpg" alt="UI/UX Design" class="round-img"></span>
                     </div>
                 </div>
             </div>
 
             <!-- Service 2: Brand Design -->
-            <div class="services-block reverse">
+            <div class="services-block reverse reveal" id="service-2">
                 <div class="service-info">
                     <span class="service-tag">02 / BRAND DESIGN</span>
                     <h3 class="service-block-title">Visual Identities That Command Attention</h3>
                     <p class="service-block-desc">Stand out in crowded markets with a distinct brand identity. We craft memorable logos, color schemes, typography systems, and brand guidelines that resonate with your target audience.</p>
                     <ul class="service-features-list">
-                        <li class="service-feature-item">Logo Design & Brand Storytelling</li>
-                        <li class="service-feature-item">Scalable Design Systems & Style Guides</li>
-                        <li class="service-feature-item">Marketing Assets & Social Templates</li>
+                        <li class="service-feature-item" data-detail="3 distinct concept directions with full vector lockups, monochrome variants, and strategic narrative.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Logo Design & Brand Storytelling</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Comprehensive brand book covering typography hierarchy, WCAG-compliant color palettes, and usage rules.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Scalable Design Systems & Style Guides</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Ready-to-use pitch decks, social media kits, and print collateral templates tailored to your identity.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Marketing Assets & Social Templates</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
                     </ul>
                 </div>
                 <div class="service-visual-box">
                     <div class="service-visual-text">
-                        <span><img src="./Assets/service-02BrandDesign.jpg" alt="" height="355px" class="round-img"></span>
+                        <span><img src="./Assets/service-02BrandDesign.jpg" alt="Brand Design" class="round-img"></span>
                     </div>
                 </div>
             </div>
 
             <!-- Service 3: Webflow Development -->
-            <div class="services-block">
+            <div class="services-block reveal" id="service-3">
                 <div class="service-info">
                     <span class="service-tag">03 / WEBFLOW DEVELOPMENT</span>
                     <h3 class="service-block-title">High-Performance Custom Webflow Websites</h3>
                     <p class="service-block-desc">Get lightning-fast, pixel-perfect websites built on Webflow. We craft clean, responsive layouts with custom animations and easy-to-manage CMS structures for non-technical teams.</p>
                     <ul class="service-features-list">
-                        <li class="service-feature-item">90+ PageSpeed Score Guarantee</li>
-                        <li class="service-feature-item">SEO-Optimized & Accessible Code</li>
-                        <li class="service-feature-item">Custom CMS Setup for Easy Publishing</li>
+                        <li class="service-feature-item" data-detail="Compressed next-gen assets, clean Client-First class naming, and zero render-blocking scripts.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">90+ PageSpeed Score Guarantee</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Semantic HTML5 tags, automated meta schemas, open-graph tags, and full keyboard accessibility.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">SEO-Optimized & Accessible Code</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Dynamic collections for blogs, case studies, and team members so marketing can publish in seconds.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Custom CMS Setup for Easy Publishing</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
                     </ul>
                 </div>
                 <div class="service-visual-box">
                     <div class="service-visual-text">
-                        <span><img src="./Assets/service-01webflow.jpg" alt="" height="355px" class="round-img"></span>
+                        <span><img src="./Assets/service-01webflow.jpg" alt="Webflow Development" class="round-img"></span>
                     </div>
                 </div>
             </div>
 
             <!-- Service 4: No-Code Development -->
-            <div class="services-block reverse">
+            <div class="services-block reverse reveal" id="service-4">
                 <div class="service-info">
                     <span class="service-tag">04 / NO-CODE DEVELOPMENT</span>
                     <h3 class="service-block-title">Launch MVPs in Weeks, Not Months</h3>
                     <p class="service-block-desc">Turn complex ideas into fully functional web applications fast. Using powerful no-code tools like Bubble and FlutterFlow, we build scalable software without engineering bottlenecks.</p>
                     <ul class="service-features-list">
-                        <li class="service-feature-item">Full-Stack MVPs Delivered in 4 Weeks</li>
-                        <li class="service-feature-item">Seamless API & Stripe Payment Integrations</li>
-                        <li class="service-feature-item">Automated Workflows & Database Design</li>
+                        <li class="service-feature-item" data-detail="Complete authentication, user dashboards, and core business logic launched in a 4-week sprint.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Full-Stack MVPs Delivered in 4 Weeks</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Connect Stripe billing, OpenAI, CRM webhooks, and custom REST APIs with secure token handling.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Seamless API & Stripe Payment Integrations</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
+                        <li class="service-feature-item" data-detail="Relational database schemas and Make/Zapier automations that eliminate manual admin work.">
+                            <div class="feature-header">
+                                <span class="feature-title-wrap">Automated Workflows & Database Design</span>
+                                <span class="feature-toggle-icon">+</span>
+                            </div>
+                            <div class="feature-detail"></div>
+                        </li>
                     </ul>
                 </div>
                 <div class="service-visual-box">
                     <div class="service-visual-text">
-                        <span><img src="/Assets/service-04NoCode.jpg" alt="" height="355px" class="round-img"></span>
+                        <span><img src="./Assets/service-04NoCode.jpg" alt="No-Code Development" class="round-img"></span>
                     </div>
                 </div>
             </div>
@@ -649,7 +1032,7 @@
 
     <!-- Pre-Footer Strategy Call Section -->
     <section class="cta-banner-section">
-        <div class="container">
+        <div class="container reveal">
             <h2 class="cta-banner-title">Meet the Minds Behind the Magic</h2>
             <p class="cta-banner-desc">Get a free 30-minute strategy session with our lead designer.</p>
             <a href="contact.html" class="btn-primary">Book a Free Call</a>
@@ -663,7 +1046,7 @@
                 
                 <!-- Column 1: Brand & Socials -->
                 <div class="footer-col footer-col-brand">
-                    <a href="index.html" class="footer-logo">Agency<span>.</span></a>
+                    <a href="home.html" class="footer-logo">Agency<span>.</span></a>
                     <p class="footer-desc">We craft high-performance digital experiences that drive real business results.</p>
                     <div class="footer-socials">
                         <a href="#" class="social-link">Ig</a>
@@ -689,21 +1072,149 @@
                 <div class="footer-col">
                     <h4 class="footer-heading">Services</h4>
                     <ul class="footer-links">
-                        <li class="footer-link-item"><a href="services.html" class="footer-link">UI/UX Design</a></li>
-                        <li class="footer-link-item"><a href="services.html" class="footer-link">Brand Design</a></li>
-                        <li class="footer-link-item"><a href="services.html" class="footer-link">Webflow Development</a></li>
-                        <li class="footer-link-item"><a href="services.html" class="footer-link">No-Code Development</a></li>
+                        <li class="footer-link-item"><a href="#service-1" class="footer-link">UI/UX Design</a></li>
+                        <li class="footer-link-item"><a href="#service-2" class="footer-link">Brand Design</a></li>
+                        <li class="footer-link-item"><a href="#service-3" class="footer-link">Webflow Development</a></li>
+                        <li class="footer-link-item"><a href="#service-4" class="footer-link">No-Code Development</a></li>
                     </ul>
+                </div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Stay Updated</h4>
+                    <p class="footer-newsletter-desc">Get monthly design & conversion tips straight to your inbox.</p>
+                    <form class="newsletter-form" id="newsletterForm" novalidate>
+                        <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                        <span class="newsletter-feedback" id="newsletterFeedback"></span>
+                    </form>
                 </div>
             </div>
 
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <p>Copyright © 2026 Agency All rights reserved</p>
-                <a href="#" class="footer-link">Scroll to Top</a>
+                <a href="#" class="footer-link" id="scrollToTop">Scroll to Top ↑</a>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Sticky Glassmorphism Navbar
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Mobile Hamburger Drawer
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('open');
+                navLinks.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('open');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // 3. Scroll-Reveal Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 4. Interactive Service Quick-Jump Navigation & ScrollSpy
+            const jumpPills = document.querySelectorAll('.jump-pill');
+            const serviceBlocks = document.querySelectorAll('.services-block');
+
+            jumpPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    const targetId = pill.getAttribute('data-target');
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            const spyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeId = entry.target.getAttribute('id');
+                        jumpPills.forEach(pill => {
+                            pill.classList.toggle('active', pill.getAttribute('data-target') === activeId);
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -55% 0px' });
+
+            serviceBlocks.forEach(block => spyObserver.observe(block));
+
+            // 5. Expandable Service Deliverable Accordions
+            const featureItems = document.querySelectorAll('.service-feature-item');
+            featureItems.forEach(item => {
+                const detailBox = item.querySelector('.feature-detail');
+                detailBox.textContent = item.getAttribute('data-detail');
+
+                item.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('open');
+                    // Close sibling items in the same list
+                    item.parentElement.querySelectorAll('.service-feature-item').forEach(sibling => {
+                        sibling.classList.remove('open');
+                    });
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
+                });
+            });
+
+            // 6. Footer Newsletter Validation
+            const newsletterForm = document.getElementById('newsletterForm');
+            const newsletterEmail = document.getElementById('newsletterEmail');
+            const newsletterFeedback = document.getElementById('newsletterFeedback');
+
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailValue = newsletterEmail.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(emailValue)) {
+                    newsletterFeedback.textContent = 'Please enter a valid email address.';
+                    newsletterFeedback.style.color = '#ff7675';
+                } else {
+                    newsletterFeedback.textContent = 'Subscribed! Check your inbox soon.';
+                    newsletterFeedback.style.color = '#55efc4';
+                    newsletterEmail.value = '';
+                }
+            });
+
+            // 7. Smooth Scroll to Top
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            scrollToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
