@@ -7,11 +7,14 @@
     <title>Agency | Portfolio</title>
     <style>
         /* Base Reset & Variables */
-        /* Base Reset & Variables */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -19,6 +22,7 @@
             background-color: #0f1016;
             color: #ffffff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -29,6 +33,11 @@
 
         ul {
             list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         .container {
@@ -43,8 +52,17 @@
             background-color: #0f1016;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            z-index: 100;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(15, 16, 22, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 14px 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         }
 
         .navbar-content {
@@ -58,6 +76,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #ffffff;
+            z-index: 1001;
         }
 
         .brand-logo span {
@@ -97,6 +116,39 @@
             border-radius: 2px;
         }
 
+        /* Mobile Hamburger Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
         .btn-primary {
             display: inline-block;
             background-color: #6c5ce7;
@@ -131,26 +183,40 @@
 
         .hero-section-heading {
             font-size: 50px;
+            font-weight: 800;
             letter-spacing: -1px;
         }
 
         .hero-section-subheading {
             font-size: 18px;
+            color: #b3b3ba;
             margin-top: 10px;
             font-weight: 400;
         }
 
         .hero-imgae {
             width: 100%;
-            height: 550px;
+            height: 500px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-image-wrapper {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .img-round {
-            border-radius: 100px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 32px;
         }
 
         /* Portfolio Grid Section Styles */
@@ -163,7 +229,7 @@
         .portfolio-grid-header {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 60px auto;
+            margin: 0 auto 40px auto;
         }
 
         .portfolio-grid-title {
@@ -180,6 +246,48 @@
             line-height: 1.6;
         }
 
+        /* Interactive Portfolio Filter Controls */
+        .portfolio-filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 30px;
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+            color: #4b5563;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #6c5ce7;
+            color: #111827;
+        }
+
+        .filter-btn.active {
+            background-color: #6c5ce7;
+            color: #ffffff;
+            border-color: #6c5ce7;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.25);
+        }
+
+        .projects-count {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
         .projects-grid {
             display: flex;
             flex-wrap: wrap;
@@ -192,7 +300,12 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid #e5e7eb;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        }
+
+        .project-card.hidden {
+            display: none;
         }
 
         .project-card:hover {
@@ -202,28 +315,38 @@
 
         .project-image-box {
             width: 100%;
-            height: 300px;
+            height: 260px;
             background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 16px;
             position: relative;
+            overflow: hidden;
         }
 
+        .project-image-box div,
         .project-image-box span {
+            width: 100%;
+            height: 100%;
             display: block;
-            font-size: 13px;
-            color: #9ca3af;
-            font-weight: 400;
-            margin-top: 6px;
-            text-align: center;
+        }
+
+        .project-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image-box img {
+            transform: scale(1.05);
         }
 
         .project-content {
             padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .project-category {
@@ -232,6 +355,16 @@
             color: #6c5ce7;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .project-view-icon {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .project-card:hover .project-view-icon {
+            color: #111827;
         }
 
         /* Minds behind it section */
@@ -275,37 +408,38 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             overflow: hidden;
+            cursor: pointer;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .team-card:hover {
+        .team-card:hover,
+        .team-card.active {
             transform: translateY(-5px);
-            border-color: rgba(108, 92, 231, 0.4);
+            border-color: rgba(108, 92, 231, 0.5);
         }
 
         .team-image-box {
             width: 100%;
             height: 320px;
             background: linear-gradient(135deg, #1e1f29 0%, #13141b 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c5ce7;
-            font-weight: 600;
-            font-size: 16px;
+            overflow: hidden;
         }
 
+        .team-image-box div,
         .team-image-box span {
+            width: 100%;
+            height: 100%;
             display: block;
-            font-size: 13px;
-            color: #b3b3ba;
-            font-weight: 400;
-            margin-top: 6px;
-            text-align: center;
+        }
+
+        .team-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .team-content {
-            padding: 30px;
+            padding: 26px 24px;
             text-align: center;
         }
 
@@ -313,13 +447,95 @@
             font-size: 20px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .team-member-role {
             font-size: 14px;
             color: #b3b3ba;
             font-weight: 500;
+        }
+
+        .team-bio {
+            max-height: 0;
+            overflow: hidden;
+            font-size: 13.5px;
+            color: #9ca3af;
+            line-height: 1.5;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .team-card.active .team-bio {
+            max-height: 100px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Project Lightbox Modal */
+        .project-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(15, 16, 22, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .project-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .project-modal-box {
+            background-color: #161722;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            max-width: 580px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(15, 16, 22, 0.75);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 28px;
+        }
+
+        .modal-body h3 {
+            font-size: 22px;
+            margin: 8px 0 12px 0;
+            color: #ffffff;
+        }
+
+        .modal-body p {
+            font-size: 14.5px;
+            color: #b3b3ba;
+            margin-bottom: 22px;
         }
 
         /* Footer & CTA Section Styles */
@@ -450,18 +666,142 @@
             gap: 20px;
         }
 
+        /* Standard 2D Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+
+        /* Tablets & Small Laptops (Max 992px) */
+        @media (max-width: 992px) {
+            .hero-section-heading {
+                font-size: 40px;
+            }
+
+            .hero-imgae {
+                height: 380px;
+            }
+
+            .project-card {
+                width: calc(50% - 15px);
+            }
+
+            .team-grid {
+                flex-wrap: wrap;
+            }
+
+            .team-card {
+                flex: 0 0 calc(50% - 15px);
+            }
+
+            .portfolio-grid-title,
+            .team-title {
+                font-size: 34px;
+            }
+        }
+
+        /* Mobile Landscape & Tablets (Max 768px) */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar-cta {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: #161722;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                transition: right 0.35s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                border-left: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .portfolio-Hero-section,
+            .portfolio-grid-section,
+            .team-section {
+                padding: 70px 0;
+            }
+
+            .project-card {
+                width: 100%;
+            }
+
+            .team-card {
+                flex: 0 0 100%;
+            }
+
+            .hero-imgae {
+                height: 300px;
+                border-radius: 20px;
+            }
+
+            .img-round {
+                border-radius: 20px;
+            }
+        }
+
+        /* Small Mobile Devices (Max 480px) */
+        @media (max-width: 480px) {
+            .hero-section-heading {
+                font-size: 32px;
+            }
+
+            .portfolio-grid-title,
+            .team-title,
+            .cta-banner-title {
+                font-size: 28px;
+            }
+
+            .hero-imgae {
+                height: 230px;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Header Section -->
-    <header class="navbar">
+    <header class="navbar" id="navbar">
         <div class="container navbar-content">
             <a href="home.html" class="brand-logo">AFN<span>.</span></a>
-            
+
             <nav>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
@@ -471,23 +811,29 @@
                 </ul>
             </nav>
 
-            <a href="contact.html" class="btn-primary">Schedule a Call</a>
+            <a href="contact.html" class="btn-primary navbar-cta">Schedule a Call</a>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
     <div class="portfolio-Hero-section">
-        <div class="Container">
+        <div class="container">
 
-            <div class="portfolio-hero-content">
+            <div class="portfolio-hero-content reveal">
                 <h1 class="hero-section-heading">Crafted Words, Bold Results</h1>
-                <p class="hero-section-subheading">Showcasing creative projects that deliver impact and inspire growth.
-                </p>
+                <p class="hero-section-subheading">Showcasing creative projects that deliver impact and inspire growth.</p>
             </div>
-            <div class="portfolio-hero-image">
+            <div class="portfolio-hero-image reveal">
                 <div class="hero-imgae">
                     <span class="hero-image-wrapper">
-                        <img src="/Assets/portfolio-hero-section.jpg" alt="" class="img-round">
+                        <img src="./Assets/portfolio-hero-section.jpg" alt="Portfolio Hero Showcase" class="img-round">
                     </span>
                 </div>
             </div>
@@ -498,80 +844,99 @@
     <!-- Explore Creative Work Section -->
     <section class="portfolio-grid-section">
         <div class="container">
-            
-            <div class="portfolio-grid-header">
+
+            <div class="portfolio-grid-header reveal">
                 <h2 class="portfolio-grid-title">Explore Our Creative Work and Success Stories</h2>
                 <p class="portfolio-grid-desc">Browse through a curated selection of our finest projects across industries. Each design showcases our commitment to innovation, strategy, and excellence to elevate brands and deliver measurable results.</p>
             </div>
 
+            <!-- Interactive Category Filter Buttons -->
+            <div class="portfolio-filter-bar reveal">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="ui-ux">UI/UX & App Design</button>
+                <button class="filter-btn" data-filter="development">Webflow & No-Code</button>
+            </div>
+
+            <p class="projects-count" id="projectsCount">Showing all 6 projects</p>
+
             <div class="projects-grid">
-                <div class="project-card">
+
+                <!-- Project 1 -->
+                <div class="project-card reveal" data-category="branding" data-desc="Complete visual identity, logo system, and brand guidelines built to stand out in a competitive market.">
                     <div class="project-image-box">
                         <div>
-                            <span><img src="/Assets/service-02BrandDesign.jpg" alt=""></span>
+                            <span><img src="./Assets/service-02BrandDesign.jpg" alt="Branding Project"></span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h5 class="project-category">Branding</h5>
+                        <span class="project-view-icon">View Details →</span>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <!-- Project 2 -->
+                <div class="project-card reveal" data-category="development" data-desc="High-converting custom Webflow build with 95+ PageSpeed scores and dynamic CMS collections.">
                     <div class="project-image-box">
                         <div>
-                            <span><img src="/Assets/service img 1.jpg" alt=""></span>
+                            <span><img src="./Assets/service img 1.jpg" alt="Webflow Development"></span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h5 class="project-category">Webflow Development</h5>
+                        <span class="project-view-icon">View Details →</span>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card">
+                <div class="project-card reveal" data-category="ui-ux" data-desc="Mobile-first application interface designed with intuitive user flows and interactive Figma components.">
                     <div class="project-image-box">
                         <div>
-                            <span><img src="/Assets/service-01UI.jpg" alt=""></span>
+                            <span><img src="./Assets/service-01UI.jpg" alt="Application Design"></span>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h5 class="project-category">application Design</h5>
+                        <h5 class="project-category">Application Design</h5>
+                        <span class="project-view-icon">View Details →</span>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card">
+                <div class="project-card reveal" data-category="development" data-desc="Full-stack No-Code MVP launched in 4 weeks with automated workflows and Stripe billing.">
                     <div class="project-image-box">
                         <div>
-                            <span><img src="/Assets/service-04NoCode.jpg" alt=""></span>
+                            <span><img src="./Assets/service-04NoCode.jpg" alt="No-Code Development"></span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h5 class="project-category">No-code Development</h5>
+                        <span class="project-view-icon">View Details →</span>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card">
+                <div class="project-card reveal" data-category="ui-ux" data-desc="Data-driven UX overhaul that simplified onboarding and increased 30-day user retention by 40%.">
                     <div class="project-image-box">
                         <div>
-                            <span><img src="/Assets/service-01UI.jpg" alt=""></span>
+                            <span><img src="./Assets/service-01UI.jpg" alt="UX Design"></span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h5 class="project-category">UX Design</h5>
+                        <span class="project-view-icon">View Details →</span>
                     </div>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card">
+                <div class="project-card reveal" data-category="branding" data-desc="Scalable brand typography, custom color tokens, and social media kit for a fast-growing startup.">
                     <div class="project-image-box">
                         <div>
-                            <span><img src="/Assets/service-02BrandDesign.jpg" alt=""></span>
+                            <span><img src="./Assets/service-02BrandDesign.jpg" alt="Brand Design"></span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h5 class="project-category">Brand Design</h5>
+                        <span class="project-view-icon">View Details →</span>
                     </div>
                 </div>
 
@@ -583,8 +948,8 @@
     <!-- Minds Behind The Magic Section -->
     <section class="team-section">
         <div class="container">
-            
-            <div class="team-header">
+
+            <div class="team-header reveal">
                 <span class="team-subtitle">Our Experts</span>
                 <h2 class="team-title">The Brains Behind the Magic</h2>
             </div>
@@ -592,41 +957,44 @@
             <div class="team-grid">
 
                 <!-- Team Member 1 -->
-                <div class="team-card">
+                <div class="team-card reveal">
                     <div class="team-image-box">
                         <div>
-                            <span><img src="/Assets/person1.avif" alt="" height="360px"></span>
+                            <span><img src="./Assets/person1.avif" alt="Alex Chen"></span>
                         </div>
                     </div>
                     <div class="team-content">
                         <h3 class="team-member-name">Alex Chen</h3>
                         <p class="team-member-role">Co-Founder</p>
+                        <div class="team-bio">Full-stack architect and Webflow specialist focused on scalable digital systems.</div>
                     </div>
                 </div>
 
                 <!-- Team Member 2 -->
-                <div class="team-card">
+                <div class="team-card reveal">
                     <div class="team-image-box">
                         <div>
-                            <span><img src="/Assets/person2.avif" alt="" height="360px"></span>
+                            <span><img src="./Assets/person2.avif" alt="Jordan Bennett"></span>
                         </div>
                     </div>
                     <div class="team-content">
                         <h3 class="team-member-name">Jordan Bennett</h3>
                         <p class="team-member-role">Creative Director</p>
+                        <div class="team-bio">Leads brand identity and UI/UX direction with 8+ years in product design.</div>
                     </div>
                 </div>
 
                 <!-- Team Member 3 -->
-                <div class="team-card">
+                <div class="team-card reveal">
                     <div class="team-image-box">
                         <div>
-                            <span><img src="/Assets/person3.jpg" alt="" height="360px"></span>
+                            <span><img src="./Assets/person3.jpg" alt="Taylor Morgan"></span>
                         </div>
                     </div>
                     <div class="team-content">
                         <h3 class="team-member-name">Taylor Morgan</h3>
                         <p class="team-member-role">Head of Client Strategy</p>
+                        <div class="team-bio">Turns complex business KPIs into clear, conversion-focused product roadmaps.</div>
                     </div>
                 </div>
 
@@ -637,21 +1005,21 @@
 
     <!-- Pre-Footer Strategy Call Section -->
     <section class="cta-banner-section">
-        <div class="container">
+        <div class="container reveal">
             <h2 class="cta-banner-title">Meet the Minds Behind the Magic</h2>
             <p class="cta-banner-desc">Get a free 30-minute strategy session with our lead designer.</p>
             <a href="contact.html" class="btn-primary">Book a Free Call</a>
         </div>
     </section>
 
-    <!-- Main Footer Section -->
+    <!-- Main Footer Section (No Newsletter) -->
     <footer class="footer-section">
         <div class="container">
             <div class="footer-grid">
-                
+
                 <!-- Column 1: Brand & Socials -->
                 <div class="footer-col footer-col-brand">
-                    <a href="index.html" class="footer-logo">Agency<span>.</span></a>
+                    <a href="home.html" class="footer-logo">Agency<span>.</span></a>
                     <p class="footer-desc">We craft high-performance digital experiences that drive real business results.</p>
                     <div class="footer-socials">
                         <a href="#" class="social-link">Ig</a>
@@ -669,6 +1037,7 @@
                         <li class="footer-link-item"><a href="about.html" class="footer-link">About</a></li>
                         <li class="footer-link-item"><a href="services.html" class="footer-link">Services</a></li>
                         <li class="footer-link-item"><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                        <li class="footer-link-item"><a href="blog.html" class="footer-link">Blog</a></li>
                         <li class="footer-link-item"><a href="contact.html" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
@@ -685,15 +1054,144 @@
                 </div>
 
             </div>
-
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <p>Copyright © 2026 Agency All rights reserved</p>
-                <a href="#" class="footer-link">Scroll to Top</a>
+                <a href="#" class="footer-link" id="scrollToTop">Scroll to Top ↑</a>
             </div>
         </div>
     </footer>
-    
+
+    <!-- Project Quick-View Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal-box">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <img src="" alt="Project Preview" class="modal-img" id="modalImg">
+            <div class="modal-body">
+                <span class="project-category" id="modalCategory"></span>
+                <h3 id="modalTitle"></h3>
+                <p id="modalDesc"></p>
+                <a href="contact.html" class="btn-primary">Start a Similar Project</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medium-Scale JavaScript Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Sticky Navbar on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Mobile Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('open');
+                navLinks.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('open');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // 3. Portfolio Category Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            const projectsCount = document.getElementById('projectsCount');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const selectedFilter = btn.getAttribute('data-filter');
+                    let visibleCount = 0;
+
+                    projectCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (selectedFilter === 'all' || cardCategory === selectedFilter) {
+                            card.classList.remove('hidden');
+                            visibleCount++;
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+
+                    projectsCount.textContent = `Showing ${visibleCount} project${visibleCount === 1 ? '' : 's'}`;
+                });
+            });
+
+            // 4. Project Lightbox Modal
+            const projectModal = document.getElementById('projectModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalImg = document.getElementById('modalImg');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+
+            projectCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const img = card.querySelector('img');
+                    const category = card.querySelector('.project-category').textContent;
+                    const desc = card.getAttribute('data-desc');
+
+                    modalImg.src = img ? img.src : '';
+                    modalCategory.textContent = category;
+                    modalTitle.textContent = `${category} Case Study`;
+                    modalDesc.textContent = desc;
+
+                    projectModal.classList.add('active');
+                });
+            });
+
+            const closeModal = () => projectModal.classList.remove('active');
+            modalClose.addEventListener('click', closeModal);
+            projectModal.addEventListener('click', (e) => {
+                if (e.target === projectModal) closeModal();
+            });
+
+            // 5. Expandable Team Member Bio Toggle
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('active');
+                });
+            });
+
+            // 6. Standard 2D Scroll-Reveal Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // 7. Smooth Scroll to Top
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            scrollToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 
 </html>
