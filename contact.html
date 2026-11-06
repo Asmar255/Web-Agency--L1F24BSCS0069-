@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agency - Contact Us</title>
     <style>
         /* Base Reset & Variables */
@@ -11,11 +12,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0f1016;
             color: #ffffff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
@@ -40,8 +46,17 @@
             background-color: #0f1016;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            z-index: 100;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(15, 16, 22, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 14px 0;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         }
 
         .navbar-content {
@@ -55,6 +70,7 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             color: #ffffff;
+            z-index: 1001;
         }
 
         .brand-logo span {
@@ -92,6 +108,39 @@
             height: 2px;
             background-color: #6c5ce7;
             border-radius: 2px;
+        }
+
+        /* Mobile Hamburger Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
 
         .btn-primary {
@@ -155,6 +204,53 @@
             font-size: 16px;
             color: #b3b3ba;
             line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Quick Copy Email Card */
+        .quick-contact-box {
+            background-color: #161722;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .quick-contact-text span {
+            display: block;
+            font-size: 12px;
+            color: #888893;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .quick-contact-text strong {
+            font-size: 15px;
+            color: #ffffff;
+        }
+
+        .copy-email-btn {
+            background-color: rgba(108, 92, 231, 0.15);
+            color: #a29bfe;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+        }
+
+        .copy-email-btn:hover {
+            background-color: #6c5ce7;
+            color: #ffffff;
         }
 
         .contact-form-container {
@@ -171,6 +267,13 @@
             margin-bottom: 20px;
         }
 
+        .form-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
         .form-label {
             display: block;
             font-size: 14px;
@@ -179,7 +282,48 @@
             margin-bottom: 8px;
         }
 
-        .form-input, .form-textarea {
+        .form-label-row .form-label {
+            margin-bottom: 0;
+        }
+
+        .char-counter {
+            font-size: 12px;
+            color: #888893;
+        }
+
+        /* Interactive Service Selection Pills */
+        .service-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .service-pill {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: #b3b3ba;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.25s ease;
+        }
+
+        .service-pill:hover {
+            border-color: rgba(108, 92, 231, 0.5);
+            color: #ffffff;
+        }
+
+        .service-pill.selected {
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+            color: #ffffff;
+        }
+
+        .form-input,
+        .form-textarea {
             width: 100%;
             padding: 14px 16px;
             background-color: rgba(255, 255, 255, 0.05);
@@ -192,8 +336,30 @@
             transition: border-color 0.3s ease;
         }
 
-        .form-input:focus, .form-textarea:focus {
+        .form-input:focus,
+        .form-textarea:focus {
             border-color: #6c5ce7;
+        }
+
+        .form-input.input-error,
+        .form-textarea.input-error {
+            border-color: #ff7675;
+        }
+
+        .form-input.input-valid,
+        .form-textarea.input-valid {
+            border-color: #2ed573;
+        }
+
+        .error-text {
+            display: none;
+            font-size: 12.5px;
+            color: #ff7675;
+            margin-top: 6px;
+        }
+
+        .error-text.visible {
+            display: block;
         }
 
         .form-textarea {
@@ -211,6 +377,7 @@
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
+            font-family: inherit;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -235,7 +402,7 @@
         /* Where to Find Us Section Styles */
         .location-section {
             padding: 90px 0;
-            background-color: #13141b; /* Custom distinct background color */
+            background-color: #13141b;
             color: #ffffff;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -318,7 +485,7 @@
             width: 100%;
             height: 100%;
             border: 0;
-            filter: invert(90%) hue-rotate(180deg); 
+            filter: invert(90%) hue-rotate(180deg);
         }
 
         /* Footer & CTA Section Styles */
@@ -450,17 +617,123 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+
+        /* Standard 2D Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+
+        /* Tablets & Small Laptops (Max 992px) */
+        @media (max-width: 992px) {
+            .contact-wrapper,
+            .location-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .contact-info,
+            .contact-form-container,
+            .location-details,
+            .map-container {
+                width: 100%;
+            }
+
+            .contact-info-title {
+                font-size: 36px;
+            }
+        }
+
+        /* Mobile Landscape & Tablets (Max 768px) */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar-cta {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: #161722;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 28px;
+                transition: right 0.35s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                border-left: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .contact-section,
+            .location-section {
+                padding: 70px 0;
+            }
+
+            .contact-form-container {
+                padding: 30px 24px;
+            }
+
+            .map-container {
+                height: 320px;
+            }
+        }
+
+        /* Small Mobile Devices (Max 480px) */
+        @media (max-width: 480px) {
+            .contact-info-title,
+            .location-title,
+            .cta-banner-title {
+                font-size: 28px;
+            }
+
+            .quick-contact-box {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .social-btn {
+                flex: 1 1 calc(50% - 12px);
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- Header Section -->
-    <header class="navbar">
+    <header class="navbar" id="navbar">
         <div class="container navbar-content">
             <a href="home.html" class="brand-logo">AFN<span>.</span></a>
             
             <nav>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
@@ -470,7 +743,14 @@
                 </ul>
             </nav>
 
-            <a href="contact.html" class="btn-primary">Schedule a Call</a>
+            <a href="#contactForm" class="btn-primary navbar-cta focus-form-btn">Schedule a Call</a>
+
+            <!-- Mobile Hamburger Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -480,33 +760,61 @@
             <div class="contact-wrapper">
                 
                 <!-- Left Column: Info -->
-                <div class="contact-info">
+                <div class="contact-info reveal">
                     <span class="contact-info-subtitle">Get in Touch</span>
                     <h1 class="contact-info-title">Let's Build Something Great Together</h1>
                     <p class="contact-info-desc">Have a project in mind or want to discuss a potential collaboration? Fill out the form and our team will get back to you within 24 hours.</p>
+
+                    <!-- Interactive Copy-Email Box -->
+                    <div class="quick-contact-box">
+                        <div class="quick-contact-text">
+                            <span>Direct Email</span>
+                            <strong id="agencyEmail">hello@afnagency.com</strong>
+                        </div>
+                        <button type="button" class="copy-email-btn" id="copyEmailBtn">Copy Email</button>
+                    </div>
                 </div>
 
                 <!-- Right Column: Interactive Form -->
-                <div class="contact-form-container">
-                    <form id="contactForm">
+                <div class="contact-form-container reveal">
+                    <form id="contactForm" novalidate>
+                        
+                        <!-- Interactive Service Interest Selector -->
+                        <div class="form-group">
+                            <label class="form-label">What can we help you with?</label>
+                            <div class="service-pills" id="servicePills">
+                                <button type="button" class="service-pill selected" data-service="UI/UX Design">UI/UX Design</button>
+                                <button type="button" class="service-pill" data-service="Brand Design">Brand Design</button>
+                                <button type="button" class="service-pill" data-service="Webflow">Webflow</button>
+                                <button type="button" class="service-pill" data-service="No-Code MVP">No-Code MVP</button>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="form-label" for="name">Your Name</label>
                             <input type="text" id="name" class="form-input" placeholder="John Doe">
+                            <span class="error-text" id="nameError">Please enter your full name (at least 2 characters).</span>
                         </div>
+
                         <div class="form-group">
                             <label class="form-label" for="email">Your Email</label>
                             <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                            <span class="error-text" id="emailError">Please enter a valid email address.</span>
                         </div>
+
                         <div class="form-group">
-                            <label class="form-label" for="message">Your Message</label>
-                            <textarea id="message" class="form-textarea" placeholder="Tell us about your project..."></textarea>
+                            <div class="form-label-row">
+                                <label class="form-label" for="message">Your Message</label>
+                                <span class="char-counter" id="charCounter">0 / 500</span>
+                            </div>
+                            <textarea id="message" class="form-textarea" maxlength="500" placeholder="Tell us about your project, timeline, and goals..."></textarea>
+                            <span class="error-text" id="messageError">Please share a few details about your project (at least 10 characters).</span>
                         </div>
-                        <button type="submit" class="form-submit-btn">Send Message</button>
+
+                        <button type="submit" class="form-submit-btn" id="submitBtn">Send Message</button>
                         
-                        <!-- Dynamic Success Feedback Box (Handled by JS) -->
-                        <div id="successMessage" class="form-success-message">
-                            Thank you! Your message has been sent successfully. We will get back to you soon.
-                        </div>
+                        <!-- Dynamic Success Feedback Box -->
+                        <div id="successMessage" class="form-success-message"></div>
                     </form>
                 </div>
 
@@ -520,7 +828,7 @@
             <div class="location-wrapper">
                 
                 <!-- Left: Details & Socials -->
-                <div class="location-details">
+                <div class="location-details reveal">
                     <span class="location-subtitle">Location & Socials</span>
                     <h2 class="location-title">Where Can You Find Us</h2>
                     <p class="location-desc">Visit our headquarters or connect with us across our social media platforms. We're always excited to hear from fellow creators and clients.</p>
@@ -534,7 +842,7 @@
                 </div>
 
                 <!-- Right: Embedded Interactive Map Locator -->
-                <div class="map-container">
+                <div class="map-container reveal">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54735.15365135756!2d72.4305060026437!3d30.971958309103762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39230fcd3cedea4f%3A0xfe1c69fc6dc3525a!2sToba%20Tek%20Singh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1793520559165!5m2!1sen!2s" 
                         width="600" height="450" style="border:0;" 
                         allowfullscreen="" loading="lazy" 
@@ -548,14 +856,14 @@
 
     <!-- Pre-Footer Strategy Call Section -->
     <section class="cta-banner-section">
-        <div class="container">
+        <div class="container reveal">
             <h2 class="cta-banner-title">Meet the Minds Behind the Magic</h2>
             <p class="cta-banner-desc">Get a free 30-minute strategy session with our lead designer.</p>
-            <a href="contact.html" class="btn-primary">Book a Free Call</a>
+            <a href="#contactForm" class="btn-primary focus-form-btn">Book a Free Call</a>
         </div>
     </section>
 
-    <!-- Main Footer Section -->
+    <!-- Main Footer Section (No Newsletter) -->
     <footer class="footer-section">
         <div class="container">
             <div class="footer-grid">
@@ -601,48 +909,176 @@
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <p>Copyright © 2026 Agency All rights reserved</p>
-                <a href="#" class="footer-link">Scroll to Top</a>
+                <a href="#" class="footer-link" id="scrollToTop">Scroll to Top ↑</a>
             </div>
         </div>
     </footer>
 
-
-
+    <!-- Medium-Scale JavaScript Functionality -->
     <script>
-        // JavaScript Form Validation & Interception Handler
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            // Prevent the default form action (which causes a full page reload)
-            event.preventDefault();
+        document.addEventListener('DOMContentLoaded', () => {
 
-            // Retrieve input field values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
+            // 1. Sticky Navbar on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 2. Mobile Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuToggle.classList.toggle('open');
+                navLinks.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('open');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // 3. Interactive Service Pill Selection
+            const servicePills = document.querySelectorAll('.service-pill');
+            let selectedService = 'UI/UX Design';
+
+            servicePills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    servicePills.forEach(p => p.classList.remove('selected'));
+                    pill.classList.add('selected');
+                    selectedService = pill.getAttribute('data-service');
+                });
+            });
+
+            // 4. Live Character Counter on Message Textarea
+            const messageInput = document.getElementById('message');
+            const charCounter = document.getElementById('charCounter');
+
+            messageInput.addEventListener('input', () => {
+                const currentLength = messageInput.value.length;
+                charCounter.textContent = `${currentLength} / 500`;
+                charCounter.style.color = currentLength >= 450 ? '#ff7675' : '#888893';
+            });
+
+            // 5. Real-Time & Submit Form Validation
+            const contactForm = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
             const successMessage = document.getElementById('successMessage');
 
-            // 1. Validate that fields are not empty
-            if (!name || !email || !message) {
-                alert('Please fill out all fields before submitting.');
-                return;
-            }
+            const setFieldState = (input, errorEl, isValid) => {
+                if (isValid) {
+                    input.classList.remove('input-error');
+                    input.classList.add('input-valid');
+                    errorEl.classList.remove('visible');
+                } else {
+                    input.classList.remove('input-valid');
+                    input.classList.add('input-error');
+                    errorEl.classList.add('visible');
+                }
+            };
 
-            // 2. Validate basic email format
-            if (!email.includes('@') || !email.includes('.')) {
-                alert('Please enter a valid email address.');
-                return;
-            }
+            const validateName = () => {
+                const valid = nameInput.value.trim().length >= 2;
+                setFieldState(nameInput, nameError, valid);
+                return valid;
+            };
 
-            // 3. Display the success feedback message box dynamically
-            successMessage.style.display = 'block';
+            const validateEmail = () => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const valid = emailRegex.test(emailInput.value.trim());
+                setFieldState(emailInput, emailError, valid);
+                return valid;
+            };
 
-            // Reset the form fields after successful submission
-            document.getElementById('contactForm').reset();
+            const validateMessage = () => {
+                const valid = messageInput.value.trim().length >= 10;
+                setFieldState(messageInput, messageError, valid);
+                return valid;
+            };
 
-            // Automatically hide the success notification after 5 seconds
-            setTimeout(function() {
-                successMessage.style.display = 'none';
-            }, 5000);
+            nameInput.addEventListener('blur', validateName);
+            emailInput.addEventListener('blur', validateEmail);
+            messageInput.addEventListener('blur', validateMessage);
+
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const isNameValid = validateName();
+                const isEmailValid = validateEmail();
+                const isMessageValid = validateMessage();
+
+                if (!isNameValid || !isEmailValid || !isMessageValid) {
+                    return;
+                }
+
+                const senderName = nameInput.value.trim();
+                successMessage.textContent = `Thank you, ${senderName}! Your inquiry regarding ${selectedService} has been sent. We'll reply within 24 hours.`;
+                successMessage.style.display = 'block';
+
+                contactForm.reset();
+                charCounter.textContent = '0 / 500';
+                [nameInput, emailInput, messageInput].forEach(el => el.classList.remove('input-valid', 'input-error'));
+
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 6000);
+            });
+
+            // 6. Click-to-Copy Email Button
+            const copyEmailBtn = document.getElementById('copyEmailBtn');
+            const agencyEmail = document.getElementById('agencyEmail').textContent;
+
+            copyEmailBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(agencyEmail).then(() => {
+                    const originalText = copyEmailBtn.textContent;
+                    copyEmailBtn.textContent = 'Copied! ✓';
+                    setTimeout(() => {
+                        copyEmailBtn.textContent = originalText;
+                    }, 2000);
+                });
+            });
+
+            // 7. Focus Form When Clicking Page CTA Buttons
+            const focusFormBtns = document.querySelectorAll('.focus-form-btn');
+            focusFormBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => nameInput.focus(), 450);
+                });
+            });
+
+            // 8. Standard 2D Scroll-Reveal Observer
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // 9. Smooth Scroll to Top
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            scrollToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
     </script>
 </body>
-</html>
+</html> 
